@@ -1,0 +1,23 @@
+{
+  "name": "grupo-04",
+  "version": "1.0.0",
+  "description": "Proyecto integrador grupo 4 DH",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1120CDFSNCN29ARED/grupo-04.git"
+  },
+  "keywords": [
+    "dh",
+    "grupo-04"
+  ],
+  "author": "Grupo 04",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/1120CDFSNCN29ARED/grupo-04/issues"
+  },
+  "homepage": "https://github.com/1120CDFSNCN29ARED/grupo-04#readme"
+}
