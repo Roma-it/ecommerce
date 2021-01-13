@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/1120CDFSNCN29ARED/grupo-04/issues"
   },
-  "homepage": "https://github.com/1120CDFSNCN29ARED/grupo-04#readme"
+  "homepage": "https://github.com/1120CDFSNCN29ARED/grupo-04#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
