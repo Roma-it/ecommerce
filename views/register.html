@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
     <link rel="stylesheet" href="/css/styles.css">
-    
+    <link rel="stylesheet" href="/css/styles-form.css">
     <title>PC COMPONENTS</title>
 </head>
 <body>
@@ -18,8 +17,8 @@
             </a>
             <img src="/img/Letras-Logo.png" alt="PC COMPONENTS">
         </div>
-
-        <div class="icons"> 
+    
+        <div class="icons">
             <div class="icon user">
                 <a href="/register">
                     <i class="fas fa-user-circle"></i>
@@ -85,6 +84,37 @@
         <article class="icon llamar">
             <i class="fas fa-phone-alt"></i>
         </article>
+
+        <section class="register">
+            <h2 class="titulo">Crear Cuenta</h2>
+            <div class="nombre">
+                <i class="fas fa-user-circle"></i>
+                <input type="text" name="nombre" placeholder="Nombre y Apellido" required class="campo">
+            </div>
+            <div class="email">
+                <i class="fas fa-envelope"></i>
+                <input type="email" name="email" placeholder="Email" required class="campo">
+            </div>
+            <div class="telefono">
+                <i class="fas fa-phone-alt"></i>
+                <input type="tel" name="telefono" placeholder="Telefono" class="campo">
+            </div>
+            <div class="password">
+                <i class="fas fa-lock"></i>
+                <input type="password" name="password" placeholder="Contraseña" required class="campo">
+            </div>
+            <div class="confirm-pass">
+                <i class="fas fa-user-lock"></i>
+                <input type="password" name="confirm-pass" placeholder="Confirmar Contraseña" required class="campo">
+            </div>
+            <div class="recuerda">
+                <input type="checkbox" name="recuerda" id="recuerda" value="true" class="check">
+                <label for="recuerda"> Recuerdame</label>
+            </div>
+            <div class="botones">
+                <button type="submit" class="submit">Confirmar</button>
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -96,7 +126,7 @@
             <section class="redes">
                 <img src="/img/logo-instagram.png" alt="logo instagram" class="logo-redes">
                 <img src="/img/logo-twitter.png" alt="logo twitter" class="logo-redes twitter">
-                <img src="/img/logo-facebook-f.png" alt="logo facebook" class="logo-redes">  
+                <img src="/img/logo-facebook-f.png" alt="logo facebook" class="logo-redes">
             </section>
         </div>
         <section class="copyright">
