@@ -48,3 +48,10 @@
   margin: 15px 0;
   border: solid 1px black;
 }
+.icon-login {
+  width: 30%;
+  opacity: 0.4;
+}
+.icon-login img {
+  width: 100%;
+}

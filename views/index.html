@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Electrolize&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-    <link rel="stylesheet" href="/css/styles.css">
-    
+    <link rel="stylesheet" href="/css/styles.css">  
     <title>PC COMPONENTS</title>
 </head>
 <body>
@@ -14,10 +14,19 @@
     <header>
         <div class="logo">
             <a href="/">
-                <img src="/img/logo-PC-Components.png" alt="logo">
+                <img src="/img/logo-PC-Components.png" alt="logo" class="cart-logo">
             </a>
             <img src="/img/Letras-Logo.png" alt="PC COMPONENTS">
         </div>
+        
+        <form action="#" method="POST" class="buscar">
+            <div class="barra-busqueda">
+                <input type="search" name="busqueda" placeholder="Buscar productos" class="campo-busqueda">
+                <a href="#">
+                <i class="fas fa-search" id="lupa"></i>
+                </a>
+            </div>
+        </form>
 
         <div class="icons"> 
             <div class="icon user">
@@ -25,8 +34,15 @@
                     <i class="fas fa-user-circle"></i>
                 </a>
             </div>
+            <div class="icon login">
+                <a href="/login">
+                    <i class="fas fa-sign-in-alt"></i>
+                </a>
+            </div>
             <div class="icon cart">
+                <a href="/productCart">
                 <i class="fas fa-cart-plus"></i>
+                </a>
             </div>
             <div class="icon lupa">
                 <i class="fas fa-search"></i>
@@ -35,50 +51,72 @@
                 <i class="fas fa-bars"></i>
             </div>
         </div>
+        <nav class="barra-nav">
+            <ul class="menu">
+                <li class="menu-item"><a href="#">GamingPC</a></li>
+                <li class="menu-item"><a href="#">GamingLaptops</a></li>
+                <li class="menu-item"><a href="#">Components</a></li>
+                <li class="menu-item"><a href="#">Accesories</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main>
         <div class="banner">
-            <h2>BANNER</h2>
+            <img src="/img/BANNER.jpg" alt="" class="banner-pic">
         </div>
         <section class="products-display">
             <article class="product-preview">
                 <div class="product-pic">
+                    <img src="/img/PC.webp" alt="">
                 </div>
                 <div class="product-description">
                     <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+                </div>
+                <div class="info-btn">
+                    <a href="#">+INFO</a>
                 </div>
             </article>
             <article class="product-preview">
                 <div class="product-pic">
+                    <img src="/img/pc2.webp" alt="">
                 </div>
                 <div class="product-description">
                     <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+                </div>
+                <div class="info-btn">
+                    <a href="#">+INFO</a>
                 </div>
             </article>
             <article class="product-preview">
                 <div class="product-pic">
+                    <img src="/img/pc3.webp" alt="">
                 </div>
                 <div class="product-description">
                     <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+                </div>
+                <div class="info-btn">
+                    <a href="#">+INFO</a>
                 </div>
             </article>
             <article class="product-preview">
                 <div class="product-pic">
+                    <img src="/img/placa.jpg" alt="">
                 </div>
                 <div class="product-description">
                     <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+                </div>
+                <div class="info-btn">
+                    <a href="#">+INFO</a>
                 </div>
             </article>
         </section>
 
         <section class="build">
-            <div class="build-pic">
-                <div class="build-desc"> 
-                    <div class="build-desc">
-                        <h2>BUILD YOUR PC</h2>
-                    </div>
-                </div>
+            <img src="/img/build.jpg" alt="" class="build-pic">
+            <div class="build-desc"> 
+                <h2 class="build-titulo">ARMA TU PC</h2>
+                <p class="text-build-description">Lorem ipsum dolor sit amet consectetur Qui nostrum deleniti quae.</p>
             </div>
         </section>
 
