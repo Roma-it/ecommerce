@@ -49,9 +49,16 @@
   border: solid 1px black;
 }
 .icon-login {
-  width: 30%;
-  opacity: 0.4;
+  width: 10%;
+  opacity: 0.2;
 }
 .icon-login img {
   width: 100%;
+}
+
+@media (min-width: 768px) {
+  .register {
+    width: 60%;
+    margin: auto;
+  }
 }

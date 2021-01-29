@@ -16,8 +16,16 @@ Por su parte, AMAZON es siempre una referencia a tener en cuenta para el ecommer
 
 INTEGRANTES DEL GRUPO
 
-Rodrigo Marsan es abogado, baterista y entusiasta de la programación y el desarrollo web. 
+Rodrigo Marsan es abogado, baterista y entusiasta de la programación y el desarrollo web.
 
 Martín Golszmidt es técnico en computación, tiene una empresa de soporte para pymes desde hace 15 años y está tratando de sumar una nueva rama de desarrollo a lo que ya hace.
 
-Silvana Mangano es licenciada en sistemas de información, gerente de procesos y organización en un Banco, amante de aprender cosas nuevas. Esta incursionando en el mundo de la programación web. 
+Silvana Mangano es licenciada en sistemas de información, gerente de procesos y organización en un Banco, amante de aprender cosas nuevas. Esta incursionando en el mundo de la programación web.
+
+LINK A TRELLO:
+https://trello.com/b/rDYNnz5j/proyecto-integrador
+
+RESUMEN RETRO:
+
+- Debemos juntarnos con mas frecuencia y organizar mejor el trabajo con mayor anticipacion a las
+  fechas de vencimiento
