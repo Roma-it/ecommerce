@@ -1,68 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-    <link rel="stylesheet" href="/css/styles.css">
+    <%- include('../partials/head')%>
     <link rel="stylesheet" href="/css/styles-form.css">
-
     <link rel="stylesheet" href="/css/productCart.css">
-    
-    <title>PC COMPONENTS</title>
 </head>
 <body>
 
-    <header>
-        <div class="logo">
-            <a href="/">
-                <img src="/img/logo-PC-Components.png" alt="logo" class="cart-logo">
-            </a>
-            <img src="/img/Letras-Logo.png" alt="PC COMPONENTS">
-        </div>
-    
-        <form action="#" method="POST" class="buscar">
-            <div class="barra-busqueda">
-                <input type="search" name="busqueda" placeholder="Buscar productos" class="campo-busqueda">
-                <a href="#">
-                    <i class="fas fa-search" id="lupa"></i>
-                </a>
-            </div>
-        </form>
-    
-        <div class="icons">
-            <div class="icon user">
-                <a href="/register">
-                    <i class="fas fa-user-circle"></i>
-                </a>
-            </div>
-            <div class="icon login">
-                <a href="/login">
-                    <i class="fas fa-sign-in-alt"></i>
-                </a>
-            </div>
-            <div class="icon cart">
-                <a href="/cart">
-                    <i class="fas fa-cart-plus"></i>
-                </a>
-            </div>
-            <div class="icon lupa">
-                <i class="fas fa-search"></i>
-            </div>
-            <div class="icon menu-btn">
-                <i class="fas fa-bars"></i>
-            </div>
-        </div>
-        <nav class="barra-nav">
-            <ul class="menu">
-                <li class="menu-item"><a href="#">GamingPC</a></li>
-                <li class="menu-item"><a href="#">GamingLaptops</a></li>
-                <li class="menu-item"><a href="#">Components</a></li>
-                <li class="menu-item"><a href="#">Accesories</a></li>
-            </ul>
-        </nav>
-    </header>
+    <%- include('../partials/header')%>
 
     <main>
         <section>
@@ -129,22 +74,7 @@
         </section>
     </main>
     
-    <footer>
-        <div class="top-footer">
-            <section class="icon contacto">
-                <i class="fas fa-envelope"></i>
-                <p>Contacto</p>
-            </section>
-            <section class="redes">
-                <img src="/img/logo-instagram.png" alt="logo instagram" class="logo-redes">
-                <img src="/img/logo-twitter.png" alt="logo twitter" class="logo-redes twitter">
-                <img src="/img/logo-facebook-f.png" alt="logo facebook" class="logo-redes">  
-            </section>
-        </div>
-        <section class="copyright">
-            <p>Copyright 2021. Derechos Reservados.</p>
-        </section>
-    </footer>
+    <%- include('../partials/footer')%>
     
 </body>
 </html>

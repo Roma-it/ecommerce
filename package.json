@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/1120CDFSNCN29ARED/grupo-04#readme",
   "dependencies": {
+    "ejs": "^3.1.6",
     "express": "^4.17.1"
   },
   "devDependencies": {
