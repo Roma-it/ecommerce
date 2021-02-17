@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <%- include('../partials/head')%>
-    <link rel="stylesheet" href="/css/productCreate.css">
+    <link rel="stylesheet" href="/css/productEdit.css">
 </head>
 <body>
     <header>
@@ -10,8 +10,8 @@
     </header>
 
     <main>
-        <h2 class="createTitle">Crear Producto</h2>
-        <form class="createForm" action="/product/create" method="POST" enctype="multipart/form-data">
+        <h2 class="editTitle">Editar Producto</h2>
+        <form class="editForm" action="/product/edit" method="POST" enctype="multipart/form-data">
             <div class="productName">
                 <input type="text" name="productName" id="productName" required placeholder="Nombre de Producto">
             </div>

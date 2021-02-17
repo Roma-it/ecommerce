@@ -19,6 +19,7 @@ router.get('/', productController.detail);
 router.get('/cart', productController.cart);
 router.get('/create', productController.createView);
 router.post('/create', upload.array('productImg'), productController.create);
-//router.get('/edit/:id', productController.editView);
-//router.put('/edit/:id', productController.edit);
+router.get('/edit/:id', productController.editView);
+router.put('/edit/:id', productController.edit);
+
 module.exports = router;

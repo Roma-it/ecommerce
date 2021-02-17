@@ -38,7 +38,9 @@ controller = {
         fs.writeFileSync('products.json', JSON.stringify(products));
 
         res.send('Producto creado correctamente')
-    }
+    },
+    editView: (req,res) => {res.render('./product/productEdit')},
+    edit: (req,res) => {res.render('./product/productEdit')},
 }
 
 module.exports = controller;
