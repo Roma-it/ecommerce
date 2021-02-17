@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <%- include('../partials/head')%>
+    <link rel="stylesheet" href="/css/productCreate.css">
+</head>
+<body>
+    <header>
+        <%- include('../partials/header') %> 
+    </header>
+
+    <main>
+        <h2 class="createTitle">Crear Producto</h2>
+        <form action="/product/create" method="POST" enctype="multipart/form-data">
+            <div class="productName">
+                <input type="text" name="productName" id="productName" required placeholder="Nombre de Producto">
+            </div>
+            <div class="productTopEspecs">
+                <input type="text" name="productTopEspec1" id="productTopEspec1" placeholder="Principal característica">
+                <input type="text" name="productTopEspec2" id="productTopEspec2" placeholder="Principal característica">
+                <input type="text" name="productTopEspec3" id="productTopEspec3" placeholder="Principal característica">
+                <input type="text" name="productTopEspec4" id="productTopEspec4" placeholder="Principal característica">
+            </div>
+            <div class="productDescription">
+                <input type="text" name="productDescription" id="productDescription" required placeholder="Descripción ampliada">
+            </div>
+            <div class="productImg">
+                <input type="file" name="productImg" id="productImg" multiple required>
+            </div>
+            <div class="productCategory">
+                <select name="productCategory" id="productCategory" required>
+                    <option value="" disabled selected hidden>Categoria</option>
+                    <option value="cpu">Procesadores</option>
+                    <option value="motherboards">Motherboards</option>
+                    <option value="memories">Memorias</option>
+                    <option value="storage">Almacenamiento</option>
+                </select>
+            </div>
+            <div class="productPrice">
+                <input type="number" name="productPrice" id="productPrice" placeholder="Precio" required>
+            </div>
+            <button type="submit" class="productSubmit">Crear</button>
+        </form>
+    </main>
+</body>
+</html>
