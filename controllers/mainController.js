@@ -1,18 +1,14 @@
-const express = require ('express');
+const path = require ('path');
+const fs = require ('fs');
+
 
 controller = {
     index: (req,res) => {
-        res.render('index');
+        res.render('./index', {products});
     },
-    login: (req,res) => {
-        res.render('./users/login');
+    search: (req,res) => {
+        res.render('./search', {searchProducts});
     },
-    register: (req,res) => {
-        res.render('./users/register');
-    }
 }
-
-
-
 
 module.exports = controller;
