@@ -7,6 +7,11 @@
 .titulo {
   margin: 20px 0;
 }
+.ventana-error {
+  background-color: rgba(255, 0, 0, 0.5);
+  border: solid 1px red;
+  color: white;
+}
 .nombre,
 .telefono,
 .email,
@@ -29,6 +34,9 @@
   position: absolute;
   top: 20px;
   left: 10px;
+}
+.register i.combo {
+  top: 48px;
 }
 .recuerda {
   width: 70%;
@@ -55,7 +63,11 @@
 .icon-login img {
   width: 100%;
 }
-
+.subir-foto {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
 @media (min-width: 768px) {
   .register {
     width: 60%;

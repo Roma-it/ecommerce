@@ -9,59 +9,16 @@
     <%- include('../partials/header')%>
 
     <main>
-        <div class="banner">
-            <h2>BANNER</h2>
-        </div>
-        <section class="products-display">
-            <article class="product-preview">
-                <div class="product-pic">
-                </div>
-                <div class="product-description">
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
-                </div>
-            </article>
-            <article class="product-preview">
-                <div class="product-pic">
-                </div>
-                <div class="product-description">
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
-                </div>
-            </article>
-            <article class="product-preview">
-                <div class="product-pic">
-                </div>
-                <div class="product-description">
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
-                </div>
-            </article>
-            <article class="product-preview">
-                <div class="product-pic">
-                </div>
-                <div class="product-description">
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
-                </div>
-            </article>
-        </section>
-
-        <section class="build">
-            <div class="build-pic">
-                <div class="build-desc"> 
-                    <div class="build-desc">
-                        <h2>BUILD YOUR PC</h2>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <article class="icon llamar">
-            <i class="fas fa-phone-alt"></i>
-        </article>
-
-        <form class="register" action="#" method="POST">
+      <form class="register" action="/users/login/valid" method="POST">
             <h2 class="titulo">Login</h2>
             <div class="icon-login">
                 <img src="/img/user.png" alt="">
             </div>
+            <section class="ventana-error">
+                <% if (validator == 1) { %>
+                <%= message %>
+                <% } %>
+            </section>
             <div class="email">
                 <i class="fas fa-envelope"></i>
                 <input type="email" name="email" placeholder="Email" required class="campo">
@@ -79,7 +36,9 @@
             </div>
         </form>
     </main>
-
+    <article class="icon llamar">
+        <i class="fas fa-phone-alt"></i>
+    </article>
     <%- include('../partials/footer')%>
     
 </body>

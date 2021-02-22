@@ -23,6 +23,15 @@ header {
   background-color: var(--celeste);
   z-index: 90;
 }
+.user-login {
+  position: fixed;
+  top: 8px;
+  right: 10px;
+  z-index: 1000;
+  color: var(--azul);
+  font-size: 0.9rem;
+  letter-spacing: 1.2px;
+}
 .barra-nav {
   display: none;
 }
