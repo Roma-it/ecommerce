@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
     <%- include('../partials/head')%>
+    <title>Crear producto</title>
     <link rel="stylesheet" href="/css/productCreate.css">
 </head>
 <body>
@@ -39,7 +40,11 @@
             <div class="productPrice">
                 <input type="number" name="productPrice" id="productPrice" placeholder="Precio" required>
             </div>
-            <button type="submit" class="productSubmit">Crear</button>
+            <div class="productPrice">
+                <label for="highlighted" class="highlighted">Producto destacado</label>
+                <input type="checkbox" name="highlighted" id="highlighted"  class="highlighted" value="1">
+            </div>
+            <button type="submit" class="productSubmit" >Crear</button>
         </form>
     </main>
 

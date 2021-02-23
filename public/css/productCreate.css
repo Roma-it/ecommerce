@@ -1,3 +1,8 @@
+:root {
+  --celeste: rgb(73, 206, 250);
+  --azul: rgb(12, 62, 155);
+}
+
 .createForm {
     display: flex;
     flex-direction: column;
@@ -47,6 +52,11 @@
     top: 20px;
     left: 10px;
   }
+  .highlighted {
+    font-size: 1rem;
+    display: inline;
+    width: 10%;
+  }
   .recuerda {
     width: 70%;
   }
@@ -60,10 +70,18 @@
     display: none;
   }
   .productSubmit {
-    padding: 5px 10px;
+    font-size: 25px;
+    padding: 5px 30px;
     border-radius: 4px;
     margin: 15px 0;
     border: solid 1px black;
+    background-color: var(--celeste);
+    color: var(--azul);
+    transition: all 450ms
+  }
+  .productSubmit:hover{
+    background-color: var(--azul);
+    color: white;
   }
   .icon-login {
     width: 10%;

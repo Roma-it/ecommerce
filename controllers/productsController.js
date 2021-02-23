@@ -1,9 +1,14 @@
 const fs = require ('fs');
 const path = require('path')
 
-const dataJSON = path.join(__dirname, './data/products.json');
+const dataJSON = path.join(__dirname, '../data/products.json');
 
 controller = {
+    products: (req,res) => {
+        let productsJSON = fs.readFileSync(dataJSON, {encoding: 'utf-8'});
+        let products = JSON.parse(productsJSON);
+        res.render('./products/products', {products});
+    },
     detail: (req,res) => {
         let productsJSON = fs.readFileSync(dataJSON, {encoding: 'utf-8'});
         let products = JSON.parse(productsJSON);
@@ -52,6 +57,7 @@ controller = {
         
         res.render('./product/productEdit', {product})},
     edit: (req,res) => {
+
         res.redirect(`/products/${product.id}`)
     },
     delete: (req,res) => {

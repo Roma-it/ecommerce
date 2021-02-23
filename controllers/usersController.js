@@ -1,7 +1,7 @@
 const path = require ('path');
 const fs = require ('fs');
 
-const dataJSON = path.join(__dirname, './data/users.json');
+const dataJSON = path.join(__dirname, '../data/users.json');
 
 
 controller = {
