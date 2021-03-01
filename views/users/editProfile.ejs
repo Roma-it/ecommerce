@@ -17,29 +17,46 @@
                 </section>
             <div class="nombre">
                 <i class="fas fa-user-circle"></i>
-                <input type="text" name="nombre" placeholder="Nombre y Apellido" required class="campo" value=<%= user.nombre%>>
+                <input type="text" name="nombre" placeholder="Nombre y Apellido" required class="campo" 
+                 value= "<%= locals.old_data ? old_data.nombre : user.nombre %>">
+                <% if (locals.errors && errors.nombre) { %>
+                    <div class="mensaje-error">
+                        <%= errors.nombre.msg %>
+                    </div>
+                    <% } %>
             </div>
             <div class="subir-foto telefono">
-                <label for="image">Seleccione un medio de pago</label>
-                
                 <select name="medioPago" id="medioPago" class="campo">
+                    <option hidden value="No tienes medio de pago">Gestiona tus medios de pago</option>
                     <option value="VISA">VISA</option>
                     <option value="AMEX">AMEX</option>
-                    <option value="Efectivo">Efectivo</option>
+                    <option value="EFECTIVO">EFECTIVO</option>
+                    <option value="No tienes medio de pago">Eliminar medios de pago</option>
                 </select>
-                <i class="far fa-credit-card combo"></i>
+                <i class="far fa-credit-card"></i>
             </div>
             <div class="telefono">
                 <i class="fas fa-phone-alt"></i>
-                <input type="number" name="telefono" placeholder="Telefono" class="campo" value=<%= user.telefono%>>
+                <input type="number" name="telefono" placeholder="Telefono" class="campo" value="<%= user.telefono%>">
+                <% if (locals.errors && errors.telefono) { %>
+                    <div class="mensaje-error">
+                        <%= errors.telefono.msg %>
+                    </div>
+                    <% } %>
             </div>
             <div class="telefono">
                 <i class="fas fa-map-marked-alt"></i>
-                <input type="text" name="domicilio" placeholder="Domicilio" class="campo" value=<%=user.domicilio%>>
+                <input type="text" name="domicilio" placeholder="Domicilio" class="campo" value="<%=user.domicilio%>">
+                
             </div>
             <div class="password">
                 <i class="fas fa-lock"></i>
                 <input type="password" name="password" placeholder="Contraseña" class="campo">
+                <% if (locals.errors && errors.password) { %>
+                    <div class="mensaje-error">
+                        <%= errors.password.msg %>
+                    </div>
+                    <% } %>
             </div>
             <div class="confirm-pass">
                 <i class="fas fa-user-lock"></i>

@@ -1,6 +1,6 @@
 <header>
     <div class="logo">
-        <a href="/<%=user.id%>">
+        <a href="/home/<%=user.id%>">
             <img src="/img/logo-PC-Components.png" alt="logo" class="cart-logo">
         </a>
         <img src="/img/Letras-Logo.png" alt="PC COMPONENTS">
@@ -16,21 +16,22 @@
     </form>
 
     <div class="icons">
-        <div class="icon user">
-            <a href="/users/register">
-                <i class="fas fa-user-circle"></i>
-            </a>
-        </div>
+        
         <div class="icon user">
             <a href="/users/profile/<%=user.id%>">
                 <i class="fas fa-user-edit"></i>
             </a>
         </div>
-        <div class="icon login">
-            <a href="/users/login">
-                <i class="fas fa-sign-in-alt"></i>
+        <a href="/">
+            <i class="fas fa-sign-out-alt icon"></i>
+        </a>
+        <% if (user.admin) { %>
+        <div class="icon cart">
+            <a href="/users/admin/<%=user.id%>">
+                <i class="fas fa-user-cog"></i>
             </a>
         </div>
+        <% } %>
         <div class="icon cart">
             <a href="/product/cart">
                 <i class="fas fa-cart-plus"></i>
