@@ -15,8 +15,7 @@ let registerValidation = [
 ]
 let editProfileValidation = [
     check('nombre').notEmpty().withMessage("Debes completar el nombre"),
-    check('telefono').isInt().withMessage("Solo puedes ingresar numeros"),
-    check('password').isLength( { min: 6}).withMessage("La contraseña debe tenes al menos 6 caracteres")
+    check('telefono').isInt().withMessage("Solo puedes ingresar numeros")
 ]
 
 
@@ -37,7 +36,7 @@ router.get('/register', usersController.registerView);
 router.post('/register', registerValidation, usersController.register);
 router.get('/profile/:id', usersController.userProfile);
 router.get('/profile/:id/edit', usersController.editProfileView);
-router.put('/edit/:id', editProfileValidation, upload.single('image'), usersController.editProfile);
+router.put('/edit/:id', upload.single('image'), editProfileValidation, usersController.editProfile);
 router.delete('/delete/:id', usersController.delete);
 
 module.exports = router;

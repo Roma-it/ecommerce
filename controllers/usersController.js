@@ -26,6 +26,7 @@ controller = {
             } else {
                 message = 'La contraseña no es correcta';
                 validator = 1;
+                res.render('./users/login', {message,validator});
             }
         } else{
             message = 'Revisa el email ingresado';
@@ -40,8 +41,6 @@ controller = {
     },
     register: (req,res) => {
         let validationErrors = validationResult(req);  
-        console.log(validationErrors)
-         console.log(req.body)  
         if(validationErrors.isEmpty()){
              const usersJson = fs.readFileSync(dataJSON,'utf-8');
             let users=[];
@@ -94,8 +93,6 @@ controller = {
     },
      editProfile: (req,res) => {
         let validationErrors = validationResult(req);
-        console.log(validationErrors)
-         console.log(req.body)
         const users = JSON.parse(fs.readFileSync(dataJSON,'utf-8'));
         let user = users.find(user => user.id == req.params.id);
         let message = '';

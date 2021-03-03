@@ -4,10 +4,10 @@
         "nombre": "Rodrigo Marsan",
         "email": "rodrigomarsan@hotmail.com",
         "telefono": "4075975345345",
-        "password": "1111",
+        "password": "11111",
         "image": "1614030889974_img_.jpg",
-        "medioPago": "VISA",
-        "domicilio": "Catamarca 2345 La "
+        "medioPago": "No tienes medio de pago",
+        "domicilio": "Catamarca 2345"
     },
     {
         "id": 2,
@@ -95,5 +95,13 @@
         "password": "111111",
         "image": "user.png",
         "admin": true
+    },
+    {
+        "id": 16,
+        "nombre": "Rodrigo",
+        "email": "dfsdsfsd@com.com",
+        "telefono": 4075970214,
+        "password": "123456",
+        "image": "user.png"
     }
 ]
