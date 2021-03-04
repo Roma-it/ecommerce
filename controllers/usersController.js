@@ -1,6 +1,8 @@
 const path = require ('path');
 const fs = require ('fs');
 const {validationResult} = require ('express-validator');
+const User = require("../model/Users");
+const bcrypt = require('bcryptjs');
 
 const dataJSON = path.join(__dirname, '../data/users.json');
 
@@ -15,14 +17,12 @@ controller = {
         res.render('./users/admin', {user});
     },
     validLogin: (req,res) => {
-        const usersJson = fs.readFileSync(dataJSON,'utf-8');
-        const users = JSON.parse(usersJson);
-        const userMail = users.find(user => user.email == req.body.email);
+        const userToLogin = User.findByEmail(req.body.email);
         let message = '';
         let validator = 0;
-        if (userMail) {
-            if (userMail.password == req.body.password){
-                res.redirect('/users/profile/'+userMail.id);
+        if (userToLogin) {
+            if (bcrypt.compareSync(req.body.password, userToLogin.password)){
+                res.redirect('/users/profile/'+userToLogin.id);
             } else {
                 message = 'La contraseña no es correcta';
                 validator = 1;
@@ -42,32 +42,24 @@ controller = {
     register: (req,res) => {
         let validationErrors = validationResult(req);  
         if(validationErrors.isEmpty()){
-             const usersJson = fs.readFileSync(dataJSON,'utf-8');
-            let users=[];
-            if(usersJson.length>0){
-                users = JSON.parse(usersJson);
-            }
-            const userMail = users.find(user => user.email == req.body.email);
+            const userInDB = User.findByEmail(req.body.email);
             let message = '';
             let validator = 0;
-            if (userMail){
-                message = 'El email ya existe, elige otro';
+            if (userInDB){
+                message = 'El email ya está registrado, elige otro';
                 validator = 1;
                 res.render('./users/register',{message,validator,old_data: req.body});
             } else {
                 if (req.body.password == req.body.confirmPass){
-                    const userId = users.length > 0 ? users[users.length-1].id+1:1;
-                    const newUser = {
-                        id: userId,
+                    const userToCreate = {
                         nombre: req.body.nombre,
                         email: req.body.email,
+                        password: bcrypt.hashSync(req.body.password,10),
                         telefono: Number(req.body.telefono),
-                        password: req.body.password,
                         image: "user.png"
                     }
-                    users.push(newUser);
-                    fs.writeFileSync(dataJSON,JSON.stringify(users, null, 4));
-                    res.redirect('/users/profile/'+userId);
+                    let newUser = User.create(userToCreate);
+                    res.redirect('/users/profile/'+newUser.id);
                 } else {
                     message = 'Las contraseñas no coinciden';
                     validator = 1;

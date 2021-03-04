@@ -20,8 +20,6 @@ Rodrigo Marsan es abogado, baterista y entusiasta de la programación y el desar
 
 Martín Golszmidt es técnico en computación, tiene una empresa de soporte para pymes desde hace 15 años y está tratando de sumar una nueva rama de desarrollo a lo que ya hace.
 
-Silvana Mangano es licenciada en sistemas de información, gerente de procesos y organización en un Banco, amante de aprender cosas nuevas. Esta incursionando en el mundo de la programación web.
-
 LINK A TRELLO:
 https://trello.com/b/rDYNnz5j/proyecto-integrador
 
@@ -29,3 +27,9 @@ RESUMEN RETRO:
 
 - Debemos juntarnos con mas frecuencia y organizar mejor el trabajo con mayor anticipacion a las
   fechas de vencimiento
+
+PANEL DE ADMINISTRADOR:
+Para poder acceder al CRUD de productos, debe loguearse como ADMINISTRADOR, dado que en el sitio de ecommerce sólo puede crear, editar y borrar productos el dueño del sitio.
+Para ello los datos son los siguientes:
+Email: admin@gmail.com
+Contraseña: 123456
