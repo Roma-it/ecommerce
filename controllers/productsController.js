@@ -1,7 +1,7 @@
 const fs = require ('fs');
 const path = require('path')
 
-const dataJSON = path.join(__dirname, './data/products.json');
+const dataJSON = path.join(__dirname, '../data/products.json');
 
 controller = {
     detail: (req,res) => {
