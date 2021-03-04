@@ -17,19 +17,36 @@
             </section>
             <div class="nombre">
                 <i class="fas fa-user-circle"></i>
-                <input type="text" name="nombre" placeholder="Nombre y Apellido" required class="campo">
+                <input type="text" name="nombre" placeholder="Nombre y Apellido" class="campo"
+                value= "<%= locals.old_data ? old_data.nombre : '' %>">
+                
             </div>
             <div class="email">
                 <i class="fas fa-envelope"></i>
-                <input type="email" name="email" placeholder="Email" required class="campo">
+                <input type="email" name="email" placeholder="Email" class="campo"
+                value= "<%= locals.old_data ? old_data.email : '' %>">
+                <% if (locals.errors && errors.email) { %>
+                <div class="mensaje-error"><%= errors.email.msg %></div>
+                <% } %>
             </div>
             <div class="telefono">
                 <i class="fas fa-phone-alt"></i>
-                <input type="number" name="telefono" placeholder="Telefono" class="campo">
+                <input type="text" name="telefono" placeholder="Telefono" class="campo"
+                value= "<%= locals.old_data ? old_data.telefono : '' %>">
+                <% if (locals.errors && errors.telefono) { %>
+                    <div class="mensaje-error">
+                        <%= errors.telefono.msg %>
+                    </div>
+                    <% } %>
             </div>
             <div class="password">
                 <i class="fas fa-lock"></i>
                 <input type="password" name="password" placeholder="Contraseña" required class="campo">
+            <% if (locals.errors && errors.password) { %>
+                <div class="mensaje-error">
+                    <%= errors.password.msg %>
+                </div>
+                <% } %>
             </div>
             <div class="confirm-pass">
                 <i class="fas fa-user-lock"></i>
