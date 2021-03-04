@@ -1,6 +1,6 @@
 <header>
     <div class="logo">
-        <a href="/">
+        <a href="/<%=user.id%>">
             <img src="/img/logo-PC-Components.png" alt="logo" class="cart-logo">
         </a>
         <img src="/img/Letras-Logo.png" alt="PC COMPONENTS">
@@ -19,6 +19,11 @@
         <div class="icon user">
             <a href="/users/register">
                 <i class="fas fa-user-circle"></i>
+            </a>
+        </div>
+        <div class="icon user">
+            <a href="/users/profile/<%=user.id%>">
+                <i class="fas fa-user-edit"></i>
             </a>
         </div>
         <div class="icon login">
