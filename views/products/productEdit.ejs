@@ -6,38 +6,43 @@
 </head>
 <body>
     <header>
-        <%- include('../partials/header') %> 
+        <%- include('../partials/header') {title: `Edit ${product.name}`}%> 
     </header>
 
     <main>
-        <h2 class="editTitle">Editar Producto</h2>
-        <form class="editForm" action="/product/edit" method="POST" enctype="multipart/form-data">
+        <h2 class="editTitle"><%=`Edit ${product.name}`%>   </h2>
+        <form class="editForm" action="/product/edit/<%=product.id%>?_method=PUT" method="POST" enctype="multipart/form-data">
             <div class="productName">
-                <input type="text" name="productName" id="productName" required placeholder="Nombre de Producto">
+                <input type="text" name="productName" id="productName" required placeholder="Nombre de Producto" value="<%=product.name%>">
             </div>
             <div class="productTopEspecs">
-                <input type="text" name="productTopEspec1" id="productTopEspec1" placeholder="Principal característica">
-                <input type="text" name="productTopEspec2" id="productTopEspec2" placeholder="Principal característica">
-                <input type="text" name="productTopEspec3" id="productTopEspec3" placeholder="Principal característica">
-                <input type="text" name="productTopEspec4" id="productTopEspec4" placeholder="Principal característica">
+                <input type="text" name="productTopEspec1" id="productTopEspec1" placeholder="Principal característica" value="<%=product.spec[0]%> >
+                <input type="text" name="productTopEspec2" id="productTopEspec2" placeholder="Principal característica" value="<%=product.spec[1]%> >
+                <input type="text" name="productTopEspec3" id="productTopEspec3" placeholder="Principal característica" value="<%=product.spec[2]%> >
+                <input type="text" name="productTopEspec4" id="productTopEspec4" placeholder="Principal característica" value="<%=product.spec[3]%> >
             </div>
             <div class="productDescription">
-                <input type="text" name="productDescription" id="productDescription" required placeholder="Descripción ampliada">
+                <input type="text" name="productDescription" id="productDescription" required placeholder="Descripción ampliada value="<%=product.description%> ">
+            </div>
+            <div class="productImages">
+                <% for( let i = 0; i < product.img.length; i++ ) { 
+                    image = product.img[i] %>
+                    <img src="<%=`../img/products/${image}`%>" alt="imagen <%=image%>">
+                <% } %>
             </div>
             <div class="productImg">
-                <span>Imágenes<input type="file" name="productImg" id="productImg" multiple required></span>
+                <span>Imágenes<input type="file" name="productImg" id="productImg" multiple></span>
             </div>
             <div class="productCategory">
                 <select name="productCategory" id="productCategory" required class="categorySelect">
-                    <option value="" disabled selected hidden>Categoria</option>
-                    <option value="cpu">Procesadores</option>
-                    <option value="motherboards">Motherboards</option>
-                    <option value="memories">Memorias</option>
-                    <option value="storage">Almacenamiento</option>
+                    <option value="cpu" <%=product.category == "cpu" ? "selected" : "" %> >Procesadores</option>
+                    <option value="motherboards" <%=product.category == "motherboards" ? "selected" : "" %>>Motherboards</option>
+                    <option value="memories" <%=product.category == "memories" ? "selected" : "" %>>Memorias</option>
+                    <option value="storage" <%=product.category == "storage" ? "selected" : "" %>>Almacenamiento</option>
                 </select>
             </div>
             <div class="productPrice">
-                <input type="number" name="productPrice" id="productPrice" placeholder="Precio" required>
+                <input type="number" name="productPrice" id="productPrice" placeholder="Precio" value="<%=product.price%> " required>
             </div>
             <button type="submit" class="productSubmit">Crear</button>
         </form>
