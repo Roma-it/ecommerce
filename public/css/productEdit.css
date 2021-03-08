@@ -9,11 +9,14 @@
     display: block;
     text-align: center;
   }
+
+
   .productName,
   .productDescription,
   .productPrice,
   .productCategory {
     width: 70%;
+    display: block;
     position: relative;
   }
 
@@ -39,7 +42,10 @@
       margin: 0 auto;
       text-align: center;
   }
-  .categorySelect {width: 100%;}
+  .categorySelect {
+    width: 100%;
+    margin: 10px;
+  }
   .register i {
     font-size: 20px;
     color: rgb(99, 99, 99);
@@ -49,6 +55,31 @@
   }
   .recuerda {
     width: 70%;
+  }
+  .productImages{
+    display: flex;
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+    justify-content: center;
+    transition: all 200ms;
+  }
+  .div-img{
+    position: relative;
+    margin: 5px 0;
+    transition: all 30ms;
+  }
+
+  .div-img:hover {
+    box-shadow: 0px 0px 10px rgb(100, 100, 100);
+    }
+  .productImages .img:hover .delete{
+    opacity: 80%;
+  }
+  .productImages .img {
+    width: 80%;
+    margin: 5px;
+  
   }
   .check {
     width: auto;
@@ -65,6 +96,7 @@
     margin: 15px 0;
     border: solid 1px black;
   }
+  
   .icon-login {
     width: 10%;
     opacity: 0.2;

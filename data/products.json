@@ -1,1 +1,147 @@
-[{"id":1,"name":"test 1","specs":["spec1","spec1","spec1","spec1"],"description":"aksdkasdja","category":"memories","price":5000},{"id":2,"name":"test 2","specs":["spec2","spec2","spec2","spec2"],"description":"aksdkasdja","category":"cpu","price":5000},{"id":3,"name":"test3","especs":["spec3","spec3","spec3","spec3"],"description":"asdmaslfmlamsfl","img":"1613540089333_img_.webp","category":"motherboards","price":"6000"},{"id":4,"name":"test5","especs":["spec5","spec5","spec5","spec5"],"description":"djajdioajsdojasdjoiasd","category":"motherboards","price":"67890"},{"id":5,"name":"test6","especs":["spec6","spec6","spec6","spec6"],"description":"djajdioajsdojasdjoiasd","category":"motherboards","price":"67890"},{"id":6,"name":"test6","especs":["spec6","spec6","spec6","spec6"],"description":"djajdioajsdojasdjoiasd","img":["1613541975557_img_.webp","1613541975559_img_.webp"],"category":"motherboards","price":"67890"}]
+[
+    {
+        "id": 6,
+        "name": "test6",
+        "specs": [
+            "spec6",
+            "spec6",
+            "spec6",
+            "spec6"
+        ],
+        "description": "djajdioajsdojasdjoiasd",
+        "img": [
+            "1613541975557_img_.webp",
+            "1613541975559_img_.webp"
+        ],
+        "category": "cpu",
+        "price": "20000",
+        "highlighted": true
+    },
+    {
+        "id": 7,
+        "name": "asdasa",
+        "specs": [
+            "e113",
+            "asd1",
+            "12",
+            "ad1"
+        ],
+        "description": "asd",
+        "img": [
+            "1614888896940_img_.jpg"
+        ],
+        "category": "memories",
+        "price": "123",
+        "highlighted": false
+    },
+    {
+        "id": 8,
+        "name": "nsdfndsfo",
+        "specs": [
+            "sndfsdnf",
+            "",
+            "",
+            ""
+        ],
+        "description": "naksldnasnfasnfnasfn",
+        "img": [
+            "1615002194739_img_.webp"
+        ],
+        "category": "motherboards",
+        "price": "5600"
+    },
+    {
+        "id": 9,
+        "name": "Producto9",
+        "specs": [
+            "1",
+            "",
+            "",
+            ""
+        ],
+        "description": "as",
+        "img": [
+            "1615002565895_img_.webp"
+        ],
+        "category": "motherboards",
+        "price": "9999",
+        "highlighted": false
+    },
+    {
+        "id": 10,
+        "name": "producto 12",
+        "specs": [
+            "23123131",
+            "12312312",
+            "3123123",
+            "123123123"
+        ],
+        "description": "fsd fs ka dsff jdsanfcjndsjf djagndsagnfdngidsfngidnfsg",
+        "img": [
+            "1615007031041_img_.webp"
+        ],
+        "category": "storage",
+        "price": "1000",
+        "highlighted": "true"
+    },
+    {
+        "id": 11,
+        "name": "CPU Intel i7 ",
+        "specs": [
+            "nsajkdnas",
+            "sdmasmd",
+            "asidjiwe",
+            ""
+        ],
+        "description": "Super CPU instal i7",
+        "img": [
+            "1615007709800_img_.webp",
+            "1615007709801_img_.webp",
+            "1615007709801_img_.webp",
+            "1615007709804_img_.webp"
+        ],
+        "category": "cpu",
+        "price": "8790",
+        "highlighted": true
+    },
+    {
+        "id": 12,
+        "name": "CPU Intel i9 ",
+        "specs": [
+            "super rapido",
+            "cache 12",
+            "2.4 ghz",
+            ""
+        ],
+        "description": "Super CPU instal i7",
+        "img": [
+            "1615007709800_img_.webp",
+            "1615007709801_img_.webp",
+            "1615007709801_img_.webp",
+            "1615007709804_img_.webp"
+        ],
+        "category": "cpu",
+        "price": "50000",
+        "highlighted": true
+    },
+    {
+        "id": 13,
+        "name": "CPU Intel i9 ",
+        "specs": [
+            "super rapido",
+            "cache 12",
+            "2.4 ghz",
+            "saraza nueva"
+        ],
+        "description": "Super CPU instal i7",
+        "img": [
+            "1615007709800_img_.webp",
+            "1615007709801_img_.webp",
+            "1615007709801_img_.webp",
+            "1615007709804_img_.webp"
+        ],
+        "category": "cpu",
+        "price": "50000",
+        "highlighted": true
+    }
+]

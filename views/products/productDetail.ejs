@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <%- include('../partials/head')%>
+    <%- include('../partials/head'), {title: product.name}%>
     <link rel="stylesheet" href="/css/styles-form.css">
     <link rel="stylesheet" href="/css/productDetail.css">
 </head>
@@ -21,8 +21,7 @@
             <article class="product">
                 <div class="product-tree-rank">
                     <p class="product-tree">
-                        <a href="#" class="product-tree-branch">Componentes OEM</a> /
-                        <a href="#" class="product-tree-branch">Procesadores</a>
+                        <a href="#" class="product-tree-branch"><%= product.category.toUpperCase() %> </a>
                     </p>
                     <div class="product-rank">
                         <i class="fa fa-star checked star1"></i>
@@ -32,70 +31,59 @@
                         <i class="fa fa-star star5"></i>
                     </div>
                 </div>
-                <h3 class="product-name">CPU Intel i7 10700 10ma</h3>
+                <h3 class="product-name"><%= product.name.toUpperCase() %> </h3>
 
                 <div class="product-images">
                     <div class="product-images-reel">
-                        <img src="/img/i7-10700-4.webp" alt="imagen producto 4" class="product-images-reel-small">
-                        <img src="/img/i7-10700.webp" alt="imagen producto 1" class="product-images-reel-small">
-                        <img src="/img/i7-10700-2.webp" alt="imagen producto 2" class="product-images-reel-small">
-                        <img src="/img/i7-10700-3.webp" alt="imagen producto 3" class="product-images-reel-small">
+                        <% for( let i = 0; i < product.img.length; i++ ) { %>
+                            <img src="/img/products/<%= product.img[i] %> " alt="imagen producto" class="product-images-reel-small">
+                        <% } %>
                     </div>
                     <div class="product-image">
-                        <img src="/img/i7-10700.webp" alt="product-images-selected" class="product-images-selected">
+                        <img src="/img/products/<%= product.img[0] %> " alt="product-images-selected" class="product-images-selected">
                     </div>
                     <div class="product-specs-list-container">
                         <ul class="product-specs-list">
-                            <li class="product-specs-list-value">10ma Generación</li>
-                            <li class="product-specs-list-value">Caché 16MB</li>
-                            <li class="product-specs-list-value">Frecuencia 2.9Ghz.</li>
-                            <li class="product-specs-list-value">8 núcleos</li>
+                            <% for( let i = 0; i < product.specs.length; i++ ) { %>
+                                <li><%= product.specs[i] %> </li>
+                            <% } %>
                         </ul>
                     </div>
                 </div>
 
                 <div class="product-cost-quantity-buy">
-                    <h4 class="product-cost">$ 42.600</h4>
-                    <select class="product-quantity" name="product-quantity" id="product-quantity">
-                        <option value="1" class="product-quantity-value">1</option>
-                        <option value="2" class="product-quantity-value">2</option>
-                        <option value="3" class="product-quantity-value">3</option>
-                        <option value="4" class="product-quantity-value">4</option>
-                        <option value="5" class="product-quantity-value">5</option>
-                        <option value="6" class="product-quantity-value">6</option>
-                        <option value="7" class="product-quantity-value">7</option>
-                        <option value="8" class="product-quantity-value">8</option>
-                    </select>
-                    <button type="submit" value="product-buy" id="product-buy" class="product-buy">Comprar</button>
+                    <h4 class="product-cost"><%= product.price ? (Number(product.price)).toLocaleString('es-AR', {minimumFractionDigits: 2, maximumFractionDigits: 2, style: 'currency', currency: 'ARS'})  : "CONSULTAR"%></h4>
+                    <form action="/products/cart/<%=product.id%>?_method=put" method="post">
+                        <button type="submit" class="product-buy" <%= !product.price ? 'disabled' : ""%> >COMPRAR</button>
+                        <select class="product-quantity" name="productAmount" id="productAmount">
+                            <% for( let i = 1; i < 100; i++ ) { %>
+                                <option value="<%= i %> " class="product-quantity-value"><%= i %> </option>
+                            <% } %>
+                        </select>
+                    </form>
                 </div>
-
+                <div class="editProduct">
+                    <a href="<%= `/products/edit/${product.id}` %> ">EDITAR</a>
+                    <form action="/products/delete/<%=product.id%>?_method=delete" method="post">
+                        <button class="deleteSubmitButton" type="submit">ELIMINAR</button>
+                    </form>
+                </div>
                 <div class="product-descript-specsfull">
                     <h4 class="product-descript-h">Descripción</h4>
-                    <p class="product-descript-p">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam repellendus quibusdam ea explicabo, corporis quam unde nam aut totam, repellat voluptate? Suscipit aperiam velit cupiditate deserunt culpa tempora blanditiis ipsam laborum! Maxime, consequatur ipsum eveniet consectetur omnis nam doloremque dicta nisi adipisci, beatae repudiandae facere officiis animi, natus aperiam et?</p>
+                    <p class="product-descript-p"> <%= product.description %> </p>
                 </div>
             </article>
         
             <div class="product-similary">
-                <article class="product-similary-product">
-                    <img class="product-similary-image" src="/img/i7-10700-4.webp" alt="producto similar 1">
-                    <h5 class="product-similary-name">Producto similar 1</h5>
-                    <h5 class="product-similary-cost">$ 45.000</h5>
-                </article>
-                <article class="product-similary-product">
-                    <img class="product-similary-image" src="/img/i7-10700-4.webp" alt="producto similar 2">
-                    <h5 class="product-similary-name">Producto similar 2</h5>
-                    <h5 class="product-similary-cost">$ 48.500</h5>
-                </article>
-                <article class="product-similary-product">
-                    <img class="product-similary-image" src="/img/i7-10700-4.webp" alt="producto similar 3">
-                    <h5 class="product-similary-name">Producto similar 3</h5>
-                    <h5 class="product-similary-cost">$ 40.200</h5>
-                </article>
+                <% for( let i = 0; i < 3; i++ ) { %>
+                    <article class="product-similary-product">
+                        <a href="/products/detail/<%= similary[i].id %> "><img class="product-similary-image" src="/img/products/<%= similary[i].img[0] %> " alt="producto similar 1"></a>
+                        <h5 class="product-similary-name"><%= similary[i].name %> </h5>
+                        <h5 class="product-similary-cost">$ <%= similary[i].price %> </h5>
+                    </article>
+                    <% } %>
             </div>
         </section>
-        <div>
-            <button><a href="<%= `/product/edit/${product.id} %> "></a>EDITAR</button>
-        </div>
     </main>
     
     <%- include('../partials/footer')%>

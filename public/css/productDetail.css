@@ -94,8 +94,50 @@ main {margin: 5px;}
 .product-buy {
     padding: 5px;
     background-color: var(--celeste);
-    font-size: 1.5em;
+    font-size: 1.2rem;
     border-radius: 10px;
+    color: var(--azul);
+    cursor: pointer;
+    transition: all 450ms;
+    font-family: 'Electrolize', sans-serif;
+}
+.product-buy:hover{
+    background-color: var(--azul);
+    color: var(--celeste);
+    font-size: 1.5rem;
+}
+.editProduct {
+    display: flex;
+    width: 10%;
+}
+.editProduct a{
+    color:var(--azul);
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: var(--celeste);
+    margin: 5px;
+    transition: all 450ms;
+}
+.editProduct a:hover {
+    background-color: var(--azul);
+    color: var(--celeste);
+}
+.deleteSubmitButton{
+    background-color: var(--celeste);
+    color: var(--azul);
+    border-radius: 5px;
+    border: 0px none;
+    margin: 5px;
+    padding: 10px;
+    font-family: 'Electrolize', sans-serif;
+    font-size: 1rem;
+    transition: all 450ms
+}
+.deleteSubmitButton:hover {
+    background-color: #b81111;
+    color: var(--celeste);
+    cursor: pointer;
 }
 .product-descript-specsfull{
     border: 2px grey solid;

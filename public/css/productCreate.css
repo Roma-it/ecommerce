@@ -15,12 +15,14 @@
     text-align: center;
   }
   .productName,
-  .productDescription,
   .productPrice,
   .productCategory {
     width: 70%;
     position: relative;
   }
+  .productDescription {
+     width: 70%;
+  } 
 
   input {
     margin: 10px 0;

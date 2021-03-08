@@ -126,9 +126,10 @@
         "id": 19,
         "nombre": "Nuevo Usuario",
         "email": "email@gmail.com",
-        "telefono": 33222,
+        "telefono": "33222334",
         "password": "$2a$10$lHknlZopinlLx.AktmoXleMMVkkqqETgGNTZRVHBogO/meG3hl6m6",
         "confirmPass": "laclave",
-        "image": "user.png"
+        "image": "user.png",
+        "medioPago": "No tienes medio de pago"
     }
 ]
