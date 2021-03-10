@@ -18,7 +18,7 @@ controller = {
         res.render('./products/productDetail', {product, similary});
     },
     cart: (req,res) => {
-        if (req.session.cart) {
+        if (req.session && req.session.cart) {
             let cart = req.session.cart;
             const account = {
                 total: function () {
@@ -33,7 +33,7 @@ controller = {
             }
             res.render('./products/productCart', {cart, account});
         };
-        res.send("Tu carrito esta vacío")
+        res.render('./products/productCart', {cart: null, account: null})
     },
     cartAdd: (req, res) => {
         let productsJSON = fs.readFileSync(dataJSON, {encoding: 'utf-8'});

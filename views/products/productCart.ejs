@@ -14,7 +14,7 @@
             <h2>Carrito de Compras: </h2>
             <div class="cart">
                 <div class="product-list">
-                    <% if (cart) { %>
+                    <% if (cart ) { %>
                         <%  for( let i = 0; i < cart.length; i++ ) { %>
                             <article class="product">
                                 <img src="/img/products/<%=cart[i].image%>" alt="imagen producto" class="product-image">
@@ -34,10 +34,13 @@
                             </article>
                             <% } %>
                         <%  } else { %>
+                        <div class="emptyCart">
                             <p>TU CARRITO ESTA VACIO</p>
+                        </div>
                         <% } %>
                     </div>
                 </div>
+                <% if (account) {%> 
                 <div class="product-price">
                     <h3 class="product-price-cost"><%=(Number(account.total())).toLocaleString('es-AR', {minimumFractionDigits: 2, maximumFractionDigits: 2, style: 'currency', currency: 'ARS'})%></h3>
                     <div class="product-detail-cost">
@@ -51,6 +54,7 @@
                     </div>
                     <button type="submit" class="product-buy">Comprar</button>
                 </div>
+                <% } %> 
             </div>
         </section>
     </main>
