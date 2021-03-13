@@ -10,37 +10,6 @@
         "domicilio": "Catamarca 2345"
     },
     {
-        "id": 2,
-        "nombre": "Gisela Ines",
-        "email": "gbus@santander.com.ar",
-        "telefono": 111562595500,
-        "password": "234"
-    },
-    {
-        "id": 7,
-        "nombre": "Rodrigo",
-        "email": "rmarsan@estudio-marsan.com.ar",
-        "telefono": 4075970214,
-        "password": "233"
-    },
-    {
-        "id": 8,
-        "nombre": "Gisela Ines",
-        "email": "asdas@dfds.com",
-        "telefono": null,
-        "password": "Gise"
-    },
-    {
-        "id": 9,
-        "nombre": "Facundo",
-        "email": "facu@gmail.com",
-        "telefono": "37373737",
-        "password": "qqq",
-        "image": "user.png",
-        "medioPago": "VISA",
-        "domicilio": "Bouchard 1730"
-    },
-    {
         "id": 10,
         "nombre": "dario",
         "email": "jajaja@hotmail.com",
@@ -62,74 +31,19 @@
     },
     {
         "id": 12,
-        "nombre": "ariana",
-        "email": "arimarsan6@gmail.com",
-        "telefono": "78798798",
-        "password": "Ari",
-        "image": "1614037276305_img_.jpg",
-        "medioPago": "VISA"
-    },
-    {
-        "id": 13,
-        "nombre": "Rodrigo",
-        "email": "adwq@dasd.com",
-        "telefono": 0,
-        "password": "1111",
-        "image": "user.png"
-    },
-    {
-        "id": 14,
-        "nombre": "Rodrigo",
-        "email": "asdaddds@dfds.com",
-        "telefono": "22222",
-        "password": "123456",
-        "image": "user.png",
-        "medioPago": "No tienes medio de pago",
-        "domicilio": "112eweqweqwe"
-    },
-    {
-        "id": 15,
         "nombre": "Administrador",
         "email": "admin@gmail.com",
-        "telefono": 1234,
-        "password": "111111",
+        "password": "$2a$10$pj9Ch2Zdlj/SAfZW1.I7t.mFu80waOR0h0Cep7r6M/xYf.jK7u3v.",
+        "telefono": 123243,
         "image": "user.png",
         "admin": true
     },
     {
-        "id": 16,
+        "id": 13,
         "nombre": "Rodrigo",
-        "email": "dfsdsfsd@com.com",
+        "email": "rmarsan2@estudio-marsan.com.ar",
+        "password": "$2a$10$1Y7Qynx9RYord7Hy3R6fHe7GJB5C1/PkdiFVPylRHUGwjhvp4nvoO",
         "telefono": 4075970214,
-        "password": "123456",
         "image": "user.png"
-    },
-    {
-        "id": 17,
-        "nombre": "Gerardo",
-        "email": "lalala@gmail.com",
-        "telefono": "12334",
-        "password": "111111",
-        "image": "1614804009876_img_.jpg",
-        "medioPago": "AMEX"
-    },
-    {
-        "id": 18,
-        "nombre": "Esteban",
-        "email": "salado@gmail.com",
-        "telefono": 330000,
-        "password": "olasquevan",
-        "confirmPass": "olasquevan",
-        "image": "user.png"
-    },
-    {
-        "id": 19,
-        "nombre": "Nuevo Usuario",
-        "email": "email@gmail.com",
-        "telefono": "33222334",
-        "password": "$2a$10$lHknlZopinlLx.AktmoXleMMVkkqqETgGNTZRVHBogO/meG3hl6m6",
-        "confirmPass": "laclave",
-        "image": "user.png",
-        "medioPago": "No tienes medio de pago"
     }
 ]

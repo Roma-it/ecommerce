@@ -1,42 +1,22 @@
 const express = require ('express');
 const router = express.Router();
-const multer = require('multer')
+const upload = require('../middlewares/multer');
 const usersController = require ('../controllers/usersController');
 const path = require ('path');
-const {check} = require ('express-validator');
+const validations = require('../middlewares/validation');
+const accessControls = require('../middlewares/accessControls');
 
-let registerValidation = [
-    check('nombre').notEmpty().withMessage("Debes completar el nombre"),
-    check('email').notEmpty().withMessage("Debes completar un email").bail()
-    .isEmail().withMessage("Debes ingresar un formato de email valido"),
-    check('telefono').isInt().withMessage("Solo puedes ingresar numeros"),
-    check('password').notEmpty().withMessage("Debes ingresar una contrasenia").bail()
-    .isLength( { min: 6}).withMessage("La contraseña debe tenes al menos 6 caracteres")
-]
-let editProfileValidation = [
-    check('nombre').notEmpty().withMessage("Debes completar el nombre"),
-    check('telefono').isInt().withMessage("Solo puedes ingresar numeros")
-]
-
-
-const multerStorage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, path.join(__dirname, '../public/img/users'));
-    },
-    filename: (req, file, cb) => {
-        cb(null, `${Date.now()}_img_${path.extname(file.originalname)}`);
-    } ,
-});
-const upload = multer ({storage: multerStorage})
-
-router.get('/login', usersController.login);
-router.get('/admin/:id', usersController.admin);
+router.get('/login', accessControls.loggedUser, usersController.login);
+router.get('/logout', usersController.logout);
+router.get('/admin/:id', accessControls.admin, usersController.admin);
 router.post('/login/valid', usersController.validLogin);
-router.get('/register', usersController.registerView);
-router.post('/register', registerValidation, usersController.register);
-router.get('/profile/:id', usersController.userProfile);
+router.get('/register', accessControls.loggedUser, usersController.registerView);
+router.post('/register', validations.register, usersController.register);
+router.get('/profile/:id', accessControls.notLogged, usersController.userProfile);
+router.get('/admin/userProfile/:id', accessControls.notLogged, usersController.adminUserProfile);
 router.get('/profile/:id/edit', usersController.editProfileView);
-router.put('/edit/:id', upload.single('image'), editProfileValidation, usersController.editProfile);
-router.delete('/delete/:id', usersController.delete);
+router.put('/edit/:id', upload.single('image'), validations.editProfile, usersController.editProfile);
+router.get('/delete/:id', accessControls.admin, usersController.delete);
+router.get('/listado', usersController.listado);
 
 module.exports = router;

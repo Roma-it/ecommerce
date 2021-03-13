@@ -3,6 +3,8 @@ const fs = require ('fs');
 const {validationResult} = require ('express-validator');
 const User = require("../model/Users");
 const bcrypt = require('bcryptjs');
+const session = require('express-session');
+const logic = require('../data/logic');
 
 const dataJSON = path.join(__dirname, '../data/users.json');
 
@@ -11,29 +13,26 @@ controller = {
         let validator = 0;
         res.render('./users/login', {validator});
     },
+    logout: (req,res) => {
+        req.session.destroy();
+        res.clearCookie('userLoggedEmail');
+        res.redirect('/');
+    },
     admin: (req,res) => {
-        const users = JSON.parse(fs.readFileSync(dataJSON,'utf-8'));
-        const user = users.find(user => user.id == req.params.id);
+        const user = req.session.userLogged;
         res.render('./users/admin', {user});
     },
     validLogin: (req,res) => {
-        const userToLogin = User.findByEmail(req.body.email);
-        let message = '';
-        let validator = 0;
-        if (userToLogin) {
-            if (bcrypt.compareSync(req.body.password, userToLogin.password)){
-                res.redirect('/users/profile/'+userToLogin.id);
-            } else {
-                message = 'La contraseña no es correcta';
-                validator = 1;
-                res.render('./users/login', {message,validator});
+        let result = logic.validLogin(req.body);
+        if (result.loginResult){
+            req.session.userLogged = result.userToLogin;
+            if (req.body.recuerda){
+                res.cookie('userLoggedEmail', req.body.email, {maxAge: ((1000*3600)*24)*3650})
             }
-        } else{
-            message = 'Revisa el email ingresado';
-            validator = 1;
-            res.render('./users/login', {message,validator});
-        };
-        
+            res.redirect('/users/profile/'+result.userToLogin.id);
+        } else {
+            res.render('./users/login', {message: result.message,validator: result.validator});
+        }
     },
     registerView: (req,res) => {
         let validator = 0;
@@ -59,7 +58,12 @@ controller = {
                         image: "user.png"
                     }
                     let newUser = User.create(userToCreate);
-                    res.redirect('/users/profile/'+newUser.id);
+                    let userToLogin = {...newUser};
+                    delete userToLogin.password;
+                    req.session.userLogged = userToLogin;
+                    res.cookie('userLoggedEmail', userToCreate.email, {maxAge: ((1000*3600)*24)*3650});
+                    console.log(`usuario en sesion: ${req.session.userLogged}`)
+                    res.redirect('/users/profile/'+req.session.userLogged.id);
                 } else {
                     message = 'Las contraseñas no coinciden';
                     validator = 1;
@@ -73,28 +77,31 @@ controller = {
         }
     },
     userProfile: (req,res) => {
-        const users = JSON.parse(fs.readFileSync(dataJSON,'utf-8'));
-        const user = users.find(user => user.id == req.params.id);
+        console.log(`usuario en sesion: ${req.session.userLogged.id}`)
+        const user = req.session.userLogged;
         res.render('./users/profile', {user});
+    },
+    adminUserProfile: (req,res) => {
+         let users = User.db();
+        const user = users.find (user => user.id == req.params.id);
+        res.render('./users/userProfile', {user});
     },
     editProfileView: (req,res) => {
         let validator = 0;
-        const users = JSON.parse(fs.readFileSync(dataJSON,'utf-8'));
-        const user = users.find(user => user.id == req.params.id);
+        console.log(`usuario en sesion: ${req.session.userLogged.id}`)
+        const user = req.session.userLogged;
         res.render('./users/editProfile', {user, validator});
     },
      editProfile: (req,res) => {
         let validationErrors = validationResult(req);
-        const users = JSON.parse(fs.readFileSync(dataJSON,'utf-8'));
-        let user = users.find(user => user.id == req.params.id);
+        let users = User.db();
+        let user = users.find (user => user.id == req.params.id);
         let message = '';
         let validator = 0;
         if(validationErrors.isEmpty()){
             if (req.body.password){
-                console.log(req.body.password)
-                console.log(req.body.confirmPass)
                 if (req.body.password == req.body.confirmPass){
-                user.password = req.body.password;
+                user.password = bcrypt.hashSync(req.body.password, 10);
                 } else {
                     message = 'Las contraseñas no coinciden';
                     validator = 1;
@@ -117,6 +124,7 @@ controller = {
                 user.image = req.file.filename;
             };
             let editedUser = JSON.stringify(users, null, 4);
+            req.session.userLogged = user;
             fs.writeFileSync(dataJSON,editedUser);
             res.redirect('/users/profile/' + user.id);
         } else {
@@ -126,8 +134,12 @@ controller = {
         }
     },
     delete: (req,res) => {
-        res.render('./users/register');
+        User.delete(req.params.id);
+        res.redirect('/users/listado');
+    },
+    listado: (req,res) => {
+        const users = User.db();
+        res.render('./users/listado',{users});
     },
 };
-
 module.exports = controller;

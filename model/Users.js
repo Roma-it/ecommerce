@@ -1,6 +1,5 @@
 const path = require ('path');
 const fs = require ('fs');
-const { getMaxListeners } = require('process');
 
 const User = {
     dbPath: path.join(__dirname, '../data/users.json'),
@@ -15,7 +14,7 @@ const User = {
         return 1;
     },
     findByID: function (id) {
-        let userFound= this.db().find(user => user.id === id);
+        let userFound= this.db().find(user => user.id == id);
         return userFound;
     },
     findByEmail: function(email){
@@ -32,12 +31,13 @@ const User = {
         return newUser;
     },
     delete: function(id){
-        let allUsers = this.db();
-        let userToDelete = this.findByID(id);
-        let index = allUsers.indexOf(userToDelete);
-        allUsers.splice(index,1);
-        fs.writeFileSync(this.dbPath,JSON.stringify(allUsers, null, 4));
-        return `Usuario ${id} eliminado`
+        const allUsers = this.db();
+        let index = allUsers.findIndex(user => user.id == id);
+        if (index > 0){
+            allUsers.splice(index,1);
+            fs.writeFileSync(this.dbPath,JSON.stringify(allUsers, null, 4));
+            return `Usuario ${id} eliminado`
+        }
     },
 }
 module.exports = User;
