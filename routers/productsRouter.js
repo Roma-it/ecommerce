@@ -3,6 +3,7 @@ const router = express.Router();
 const multer = require('multer')
 const path = require ('path')
 const { body }  = require ('express-validator');
+const accessControls = require('../middlewares/accessControls');
 
 const productsController = require ('../controllers/productsController');
 
@@ -82,13 +83,13 @@ router.get('/detail/:id', productsController.detail);
 router.get('/cart', productsController.cart);
 router.put('/cart/:id', productsController.cartAdd);
 router.delete('cart/:id', productsController.cartDelete);
-router.get('/create', productsController.createView);
-router.post('/create', upload.array('productImg'), validateRegister, productsController.create);
-router.get('/listado', productsController.list)
-router.get('/edit/:id', productsController.editView);
-router.put('/edit/:id', upload.array('productImg'), validateEdit, productsController.edit);
-router.put('/edit/price/:id', productsController.editPrice);
-router.put('/edit/highlighted/:id', productsController.editHighlighted);
-router.delete('/delete/:id', productsController.delete);
+router.get('/create', accessControls.notLogged, accessControls.admin, productsController.createView);
+router.post('/create', accessControls.notLogged,accessControls.admin, upload.array('productImg'), validateRegister, productsController.create);
+router.get('/listado', accessControls.notLogged,accessControls.admin, productsController.list)
+router.get('/edit/:id', accessControls.notLogged,accessControls.admin, productsController.editView);
+router.put('/edit/:id', accessControls.notLogged,accessControls.admin, upload.array('productImg'), validateEdit, productsController.edit);
+router.put('/edit/price/:id', accessControls.notLogged, accessControls.admin, productsController.editPrice);
+router.put('/edit/highlighted/:id', accessControls.notLogged,accessControls.admin, productsController.editHighlighted);
+router.delete('/delete/:id', accessControls.notLogged, accessControls.admin, productsController.delete);
 
 module.exports = router;
