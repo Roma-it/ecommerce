@@ -31,7 +31,7 @@
             "1614888896940_img_.jpg"
         ],
         "category": "memories",
-        "price": "123",
+        "price": "0",
         "highlighted": false
     },
     {
@@ -285,190 +285,156 @@
         "highlighted": true
     },
     {
-    "id": 21,
-    "name": "producto 12",
-    "specs": [
-        "23123131",
-        "12312312",
-        "3123123",
-        "123123123"
-    ],
-    "description": "fsd fs ka dsff jdsanfcjndsjf djagndsagnfdngidsfngidnfsg",
-    "img": [
-        "1615007031041_img_.webp"
-    ],
-    "category": "storage",
-    "price": "1000",
-    "highlighted": true
-},
-{
-"id": 22,
-"name": "producto 12",
-"specs": [
-    "23123131",
-    "12312312",
-    "3123123",
-    "123123123"
-],
-"description": "fsd fs ka dsff jdsanfcjndsjf djagndsagnfdngidsfngidnfsg",
-"img": [
-    "1615007031041_img_.webp"
-],
-"category": "storage",
-"price": "1000",
-"highlighted": true
-},
-{
-"id": 23,
-"name": "producto 12",
-"specs": [
-    "23123131",
-    "12312312",
-    "3123123",
-    "123123123"
-],
-"description": "fsd fs ka dsff jdsanfcjndsjf djagndsagnfdngidsfngidnfsg",
-"img": [
-    "1615007031041_img_.webp"
-],
-"category": "storage",
-"price": "1000",
-"highlighted": true
-},
-{
-"id": 24,
-"name": "producto 12",
-"specs": [
-    "23123131",
-    "12312312",
-    "3123123",
-    "123123123"
-],
-"description": "fsd fs ka dsff jdsanfcjndsjf djagndsagnfdngidsfngidnfsg",
-"img": [
-    "1615007031041_img_.webp"
-],
-"category": "storage",
-"price": "1000",
-"highlighted": true
-},
-{
-"id": 25,
-"name": "producto 12",
-"specs": [
-    "23123131",
-    "12312312",
-    "3123123",
-    "123123123"
-],
-"description": "fsd fs ka dsff jdsanfcjndsjf djagndsagnfdngidsfngidnfsg",
-"img": [
-    "1615007031041_img_.webp"
-],
-"category": "storage",
-"price": "1000",
-"highlighted": true
-},
-{
-"id": 26,
-"name": "producto 12",
-"specs": [
-    "23123131",
-    "12312312",
-    "3123123",
-    "123123123"
-],
-"description": "fsd fs ka dsff jdsanfcjndsjf djagndsagnfdngidsfngidnfsg",
-"img": [
-    "1615007031041_img_.webp"
-],
-"category": "memories",
-"price": "1000",
-"highlighted": true
-},
-{
-"id": 27,
-"name": "producto 12",
-"specs": [
-    "23123131",
-    "12312312",
-    "3123123",
-    "123123123"
-],
-"description": "fsd fs ka dsff jdsanfcjndsjf djagndsagnfdngidsfngidnfsg",
-"img": [
-    "1615007031041_img_.webp"
-],
-"category": "memories",
-"price": "1000",
-"highlighted": true
-},
-{
-"id": 28,
-"name": "producto 12",
-"specs": [
-    "23123131",
-    "12312312",
-    "3123123",
-    "123123123"
-],
-"description": "fsd fs ka dsff jdsanfcjndsjf djagndsagnfdngidsfngidnfsg",
-"img": [
-    "1615007031041_img_.webp"
-],
-"category": "memories",
-"price": "1000",
-"highlighted": true
-},
-{
-"id": 29,
-"name": "producto 12",
-"specs": [
-    "23123131",
-    "12312312",
-    "3123123",
-    "123123123"
-],
-"description": "fsd fs ka dsff jdsanfcjndsjf djagndsagnfdngidsfngidnfsg",
-"img": [
-    "1615007031041_img_.webp"
-],
-"category": "memories",
-"price": "1000",
-"highlighted": true
-},
-{
-"id": 30,
-"name": "producto 12",
-"specs": [
-    "23123131",
-    "12312312",
-    "3123123",
-    "123123123"
-],
-"description": "fsd fs ka dsff jdsanfcjndsjf djagndsagnfdngidsfngidnfsg",
-"img": [
-    "1615007031041_img_.webp"
-],
-"category": "memories",
-"price": "1000",
-"highlighted": true
-},
-{
-"id": 31,
-"name": "producto 12",
-"specs": [
-    "23123131",
-    "12312312",
-    "3123123",
-    "123123123"
-],
-"description": "fsd fs ka dsff jdsanfcjndsjf djagndsagnfdngidsfngidnfsg",
-"img": [
-    "1615007031041_img_.webp"
-],
-"category": "memories",
-"price": "1000",
-"highlighted": true
-}
+        "id": 21,
+        "name": "producto 12",
+        "specs": [
+            "23123131",
+            "12312312",
+            "3123123",
+            "123123123"
+        ],
+        "description": "fsd fs ka dsff jdsanfcjndsjf djagndsagnfdngidsfngidnfsg",
+        "img": [
+            "1615007031041_img_.webp"
+        ],
+        "category": "storage",
+        "price": "1000",
+        "highlighted": true
+    },
+    {
+        "id": 22,
+        "name": "producto 12",
+        "specs": [
+            "23123131",
+            "12312312",
+            "3123123",
+            "123123123"
+        ],
+        "description": "fsd fs ka dsff jdsanfcjndsjf djagndsagnfdngidsfngidnfsg",
+        "img": [
+            "1615007031041_img_.webp"
+        ],
+        "category": "storage",
+        "price": "1000",
+        "highlighted": true
+    },
+    {
+        "id": 23,
+        "name": "producto 12",
+        "specs": [
+            "23123131",
+            "12312312",
+            "3123123",
+            "123123123"
+        ],
+        "description": "fsd fs ka dsff jdsanfcjndsjf djagndsagnfdngidsfngidnfsg",
+        "img": [
+            "1615007031041_img_.webp"
+        ],
+        "category": "storage",
+        "price": "1000",
+        "highlighted": true
+    },
+    {
+        "id": 24,
+        "name": "producto 12",
+        "specs": [
+            "23123131",
+            "12312312",
+            "3123123",
+            "123123123"
+        ],
+        "description": "fsd fs ka dsff jdsanfcjndsjf djagndsagnfdngidsfngidnfsg",
+        "img": [
+            "1615007031041_img_.webp"
+        ],
+        "category": "storage",
+        "price": "1000",
+        "highlighted": true
+    },
+    {
+        "id": 25,
+        "name": "producto 12",
+        "specs": [
+            "23123131",
+            "12312312",
+            "3123123",
+            "123123123"
+        ],
+        "description": "fsd fs ka dsff jdsanfcjndsjf djagndsagnfdngidsfngidnfsg",
+        "img": [
+            "1615007031041_img_.webp"
+        ],
+        "category": "storage",
+        "price": "1000",
+        "highlighted": true
+    },
+    {
+        "id": 26,
+        "name": "producto 12",
+        "specs": [
+            "23123131",
+            "12312312",
+            "3123123",
+            "123123123"
+        ],
+        "description": "fsd fs ka dsff jdsanfcjndsjf djagndsagnfdngidsfngidnfsg",
+        "img": [
+            "1615007031041_img_.webp"
+        ],
+        "category": "memories",
+        "price": "1000",
+        "highlighted": true
+    },
+    {
+        "id": 27,
+        "name": "producto 12",
+        "specs": [
+            "23123131",
+            "12312312",
+            "3123123",
+            "123123123"
+        ],
+        "description": "fsd fs ka dsff jdsanfcjndsjf djagndsagnfdngidsfngidnfsg",
+        "img": [
+            "1615007031041_img_.webp"
+        ],
+        "category": "memories",
+        "price": "1000",
+        "highlighted": true
+    },
+    {
+        "id": 28,
+        "name": "producto 12",
+        "specs": [
+            "23123131",
+            "12312312",
+            "3123123",
+            "123123123"
+        ],
+        "description": "fsd fs ka dsff jdsanfcjndsjf djagndsagnfdngidsfngidnfsg",
+        "img": [
+            "1615007031041_img_.webp"
+        ],
+        "category": "memories",
+        "price": "1000",
+        "highlighted": true
+    },
+    {
+        "id": 29,
+        "name": "producto 12",
+        "specs": [
+            "23123131",
+            "12312312",
+            "3123123",
+            "123123123"
+        ],
+        "description": "fsd fs ka dsff jdsanfcjndsjf djagndsagnfdngidsfngidnfsg",
+        "img": [
+            "1615007031041_img_.webp"
+        ],
+        "category": "memories",
+        "price": "1000",
+        "highlighted": true
+    }
 ]

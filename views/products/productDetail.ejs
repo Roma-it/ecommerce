@@ -62,12 +62,16 @@
                         </select>
                     </form>
                 </div>
+
+            <% if (locals.userLogged && locals.userLogged.admin) { %>
                 <div class="editProduct">
                     <a href="<%= `/products/edit/${product.id}` %> ">EDITAR</a>
                     <form action="/products/delete/<%=product.id%>?_method=delete" method="post">
                         <button class="deleteSubmitButton" type="submit">ELIMINAR</button>
                     </form>
                 </div>
+            <% } %>
+
                 <div class="product-descript-specsfull">
                     <h4 class="product-descript-h">Descripción</h4>
                     <p class="product-descript-p"> <%= product.description %> </p>
