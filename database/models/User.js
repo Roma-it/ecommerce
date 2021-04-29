@@ -6,7 +6,7 @@ module.exports = (sequelize, dataTypes) => {
     documento: { type: dataTypes.INTEGER(11), allowNull: false },
     tipo_documento_id: { type: dataTypes.INTEGER(11), allowNull: false },
     email: { type: dataTypes.STRING(50), allowNull: false },
-    password: { type: dataTypes.STRING(50), allowNull: false },
+    pass: { type: dataTypes.STRING(50), allowNull: false },
     condicion_fiscal_id: { type: dataTypes.INTEGER(11), allowNull: false },
     razon_social: { type: dataTypes.STRING(50), allowNull: false },
     telefono: { type: dataTypes.INTEGER(11) },
@@ -45,9 +45,17 @@ module.exports = (sequelize, dataTypes) => {
       as: "provincia",
       foreignKey: "dom_provincia_id",
     });
+    User.belongsTo(models.Provincia, {
+      as: "provincia_envio",
+      foreignKey: "dom_env_provincia_id",
+    });
     User.belongsTo(models.Pais, {
       as: "pais",
       foreignKey: "dom_pais_id",
+    });
+    User.belongsTo(models.Pais, {
+      as: "pais",
+      foreignKey: "dom_env_pais_id",
     });
     User.hasMany(models.Compra, {
       as: "compras",
