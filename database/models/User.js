@@ -27,7 +27,6 @@ module.exports = (sequelize, dataTypes) => {
   };
   let config = { timestamps: true };
   const User = sequelize.define(alias, cols, config);
-
   User.associate = function (models) {
     User.belongsTo(models.TipoId, {
       as: "identificacion",
@@ -54,7 +53,7 @@ module.exports = (sequelize, dataTypes) => {
       foreignKey: "dom_pais_id",
     });
     User.belongsTo(models.Pais, {
-      as: "pais",
+      as: "pais_env",
       foreignKey: "dom_env_pais_id",
     });
     User.hasMany(models.Compra, {

@@ -419,22 +419,5 @@
         "category": "memories",
         "price": "1000",
         "highlighted": true
-    },
-    {
-        "id": 29,
-        "name": "producto 12",
-        "specs": [
-            "23123131",
-            "12312312",
-            "3123123",
-            "123123123"
-        ],
-        "description": "fsd fs ka dsff jdsanfcjndsjf djagndsagnfdngidsfngidnfsg",
-        "img": [
-            "1615007031041_img_.webp"
-        ],
-        "category": "memories",
-        "price": "1000",
-        "highlighted": true
     }
 ]

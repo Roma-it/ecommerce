@@ -37,13 +37,5 @@
         "telefono": 123243,
         "image": "user.png",
         "admin": true
-    },
-    {
-        "id": 13,
-        "nombre": "Rodrigo",
-        "email": "rmarsan2@estudio-marsan.com.ar",
-        "password": "$2a$10$1Y7Qynx9RYord7Hy3R6fHe7GJB5C1/PkdiFVPylRHUGwjhvp4nvoO",
-        "telefono": 4075970214,
-        "image": "user.png"
     }
 ]

@@ -1,9 +1,12 @@
 module.exports = function (sequelize, dataTypes) {
-  const Provincia = sequelize.define("Provincia", {
-    nombre: { type: dataTypes.STRING(20), allowNull: false },
-    pais_id: { type: dataTypes.INTEGER(11), allowNull: false },
-  });
-
+  const Provincia = sequelize.define(
+    "Provincia",
+    {
+      nombre: { type: dataTypes.STRING(20), allowNull: false },
+      pais_id: { type: dataTypes.INTEGER(11), allowNull: false },
+    },
+    { timestamps: false }
+  );
   Provincia.associate = function (models) {
     Provincia.belongsTo(models.Pais, {
       as: "prov_pais",
@@ -11,9 +14,8 @@ module.exports = function (sequelize, dataTypes) {
     });
     Provincia.hasMany(models.User, {
       as: "usuarios",
-      foreignKey: "provincia_id",
+      foreignKey: "dom_provincia_id",
     });
   };
-
   return Provincia;
 };

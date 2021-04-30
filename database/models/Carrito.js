@@ -3,7 +3,6 @@ module.exports = function (sequelize, dataTypes) {
     pedido_id: { type: dataTypes.INTEGER(11), allowNull: false },
     status: { type: dataTypes.INTEGER(11), allowNull: false },
   });
-
   Carrito.associate = function (models) {
     Carrito.hasMany(models.Pedido, {
       as: "pedidos",
@@ -14,6 +13,5 @@ module.exports = function (sequelize, dataTypes) {
       foreignKey: "carrito_id",
     });
   };
-
   return Carrito;
 };

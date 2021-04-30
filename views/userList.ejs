@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <%- include('./partials/head')%>
+</head>
+<body>
+
+    <%- include('./partials/header')%>
+
+    <main>
+        <div class="banner">
+            <img src="/img/BANNER.jpg" alt="" class="banner-pic">
+        </div>
+
+<div>
+    <ul>
+    <% users.forEach(user => {%>
+        <div class="margin-top">
+            <section class="user-list">
+                <div>
+                    <p class="user-list-text">Nombre: <strong>
+                            <%=user.name%>
+                        </strong></p>
+                </div>
+                <div>
+                    <p class="user-list-text">Apellido: <strong>
+                            <%=user.last_name%>
+                        </strong></p>
+                </div>
+                <div>
+                    <p class="user-list-text">Email: <strong>
+                            <%=user.email%>
+                        </strong></p>
+                </div>
+                <div class="info-btn ver">
+                    <a href="/users/admin/userProfile/<%=user.id%>">VER</a>
+                </div>
+                <div class="info-btn eliminar">
+                    <a href="/users/delete/<%=users.id%>">ELIMINAR</a>
+                </div>
+            </section>
+        </div>
+    <%});%>
+</ul>
+    
+</div>
+
+        
+
+        <section class="build">
+            <img src="/img/build.jpg" alt="" class="build-pic">
+            <div class="build-desc"> 
+                <h2 class="build-titulo">ARMA TU PC</h2>
+                <p class="text-build-description">Lorem ipsum dolor sit amet consectetur Qui nostrum deleniti quae.</p>
+            </div>
+        </section>
+
+        <article class="icon llamar">
+            <i class="fas fa-phone-alt"></i>
+        </article>
+    </main>
+
+    <%- include('./partials/footer')%>
+    
+</body>
+</html>
