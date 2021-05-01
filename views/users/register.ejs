@@ -35,7 +35,7 @@
                 </div>
                 <div class="telefono">
                     <i class="fas fa-phone-alt"></i>
-                    <input type="text" name="telefono" placeholder="Telefono" class="campo"
+                    <input type="number" name="telefono" placeholder="Telefono" class="campo"
                         value="<%= locals.old_data ? old_data.telefono : '' %>">
                     <% if (locals.errors && errors.telefono) { %>
                         <div class="mensaje-error">

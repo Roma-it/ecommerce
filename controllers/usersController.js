@@ -1,15 +1,11 @@
 const path = require("path");
 const fs = require("fs");
 const { validationResult } = require("express-validator");
-//const User = require("../model/Users");
 const User = require("../model/Users copy");
 const bcrypt = require("bcryptjs");
 const session = require("express-session");
-const logic = require("../data/logic");
 const db = require("../database/models");
 const sequelize = db.sequelize;
-
-const dataJSON = path.join(__dirname, "../data/users.json");
 
 controller = {
   login: (req, res) => {
@@ -25,10 +21,11 @@ controller = {
     const user = req.session.userLogged;
     res.render("./users/admin", { user });
   },
-  validLogin: (req, res) => {
-    let result = logic.validLogin(req.body);
+  validLogin: async (req, res) => {
+    let result = await User.validLogin(req.body);
     if (result.loginResult) {
       req.session.userLogged = result.userToLogin;
+      console.log(req.session.userLogged);
       if (req.body.recuerda) {
         res.cookie("userLoggedEmail", req.body.email, {
           maxAge: 1000 * 3600 * 24 * 3650,
@@ -116,10 +113,9 @@ controller = {
     const user = req.session.userLogged;
     res.render("./users/editProfile", { user, validator });
   },
-  editProfile: (req, res) => {
+  editProfile: async (req, res) => {
     let validationErrors = validationResult(req);
-    let users = User.db();
-    let user = users.find((user) => user.id == req.params.id);
+    let user = await User.findByID(req.params.id);
     let message = "";
     let validator = 0;
     if (validationErrors.isEmpty()) {
@@ -139,7 +135,7 @@ controller = {
         user.domicilio = req.body.domicilio;
       }
       if (req.body.nombre) {
-        user.nombre = req.body.nombre;
+        user.name = req.body.nombre;
       }
       if (req.body.telefono) {
         user.telefono = req.body.telefono;
@@ -147,9 +143,8 @@ controller = {
       if (req.file) {
         user.image = req.file.filename;
       }
-      let editedUser = JSON.stringify(users, null, 4);
+      await User.update(user);
       req.session.userLogged = user;
-      fs.writeFileSync(dataJSON, editedUser);
       res.redirect("/users/profile/" + user.id);
     } else {
       message = "Han habido errores al completar el formulario";
@@ -167,8 +162,8 @@ controller = {
     User.delete(req.params.id);
     res.redirect("/users/listado");
   },
-  listado: (req, res) => {
-    const users = User.db();
+  listado: async (req, res) => {
+    const users = await User.db();
     res.render("./users/listado", { users });
   },
 };

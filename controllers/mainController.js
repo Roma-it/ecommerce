@@ -26,11 +26,6 @@ controller = {
   search: (req, res) => {
     res.render("./search", { searchProducts });
   },
-  list: (req, res) => {
-    db.User.findAll().then((users) => {
-      res.render("userList.ejs", { users });
-    });
-  },
 };
 
 module.exports = controller;

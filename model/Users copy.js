@@ -1,11 +1,39 @@
-const path = require("path");
-const fs = require("fs");
 const db = require("../database/models");
 const sequelize = db.sequelize;
+const bcrypt = require("bcryptjs");
 
 const User = {
-  db: function () {
-    return JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
+  db: async function () {
+    let all = await db.User.findAll();
+    return all;
+  },
+  validLogin: async function (user) {
+    let userToLogin = await User.findByEmail(user.email);
+    userToLogin = userToLogin.dataValues;
+    //console.log("Este es USER TO LOGIN: " + userToLogin.id);
+    if (userToLogin) {
+      if (bcrypt.compareSync(user.password, userToLogin.pass)) {
+        delete userToLogin.password;
+        return {
+          message: "",
+          validator: 0,
+          loginResult: true,
+          userToLogin,
+        };
+      } else {
+        return {
+          message: "La contraseña no es correcta",
+          validator: 1,
+          loginResult: false,
+        };
+      }
+    } else {
+      return {
+        message: "Revisa el email ingresado",
+        validator: 1,
+        loginResult: false,
+      };
+    }
   },
   findByID: async function (id) {
     let userFound = await db.User.findByPk(id);
@@ -18,17 +46,33 @@ const User = {
     return userFound;
   },
   create: async function (user) {
-    let newUser = await db.User.create({ ...user });
+    let newUser = await db.User.create({
+      name: user.nombre,
+      telefono: user.telefono,
+      email: user.email,
+      pass: user.password,
+      image: user.image,
+    });
     return newUser;
   },
-  delete: function (id) {
-    const allUsers = this.db();
-    let index = allUsers.findIndex((user) => user.id == id);
-    if (index > 0) {
-      allUsers.splice(index, 1);
-      fs.writeFileSync(this.dbPath, JSON.stringify(allUsers, null, 4));
-      return `Usuario ${id} eliminado`;
-    }
+  update: async function (user) {
+    let userUpdated = await db.User.update(
+      {
+        name: user.nombre,
+        telefono: user.telefono,
+        email: user.email,
+        pass: user.password,
+        image: user.image,
+        medioPago: user.medioPago,
+      },
+      { where: { id: user.id } }
+    );
+    return userUpdated;
+  },
+  delete: function (userId) {
+    db.User.destroy({
+      where: { id: userId },
+    });
   },
 };
 module.exports = User;

@@ -11,7 +11,7 @@
         <main>
             <form class="register" action="/users/edit/<%= user.id%>?_method=PUT" method="POST"
                 enctype="multipart/form-data">
-                <h2 class="titulo">Edita tu perfil <%= user.nombre%>!</h2>
+                <h2 class="titulo">Edita tu perfil <%= user.name%>!</h2>
                 <section class="ventana-error">
                     <% if (validator==1) { %>
                         <%= message %>
@@ -20,7 +20,7 @@
                 <div class="nombre">
                     <i class="fas fa-user-circle"></i>
                     <input type="text" name="nombre" placeholder="Nombre y Apellido" class="campo"
-                        value="<%= locals.old_data ? old_data.nombre : user.nombre %>">
+                        value="<%= locals.old_data ? old_data.nombre : user.name %>">
                     <% if (locals.errors && errors.nombre) { %>
                         <div class="mensaje-error">
                             <%= errors.nombre.msg %>

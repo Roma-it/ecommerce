@@ -12,7 +12,7 @@
         <main>
             <section class="container">
                 <div class="register">
-                    <h2 class="titulo">Bienvenid@ <%= user.nombre%>!</h2>
+                    <h2 class="titulo">Bienvenid@ <%= user.name%>!</h2>
                     <div class="profile-photo-cont">
                         <div class="icon-login">
                             <img src="/img/users/<%= user.image%>" alt="">
@@ -23,7 +23,7 @@
                     </div>
                     <p class="text">
                         <strong> Nombre: </strong><span class="text-datos">
-                            <%= user.nombre%>
+                            <%= user.name%>
                         </span>
                     </p>
                     <p class="text">
@@ -67,7 +67,7 @@
             </section>
             <section class="products-display">
                 <h3 class="titulo">
-                    <%= user.nombre%>, tenemos estas ofertas para vos!
+                    <%= user.name%>, tenemos estas ofertas para vos!
                 </h3>
                 <article class="product-preview">
                     <div class="product-pic">
