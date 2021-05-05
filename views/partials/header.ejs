@@ -44,9 +44,12 @@
                         <i class="fas fa-bars"></i>
                     </div>
         </div>
-        <p class="user-login">
-            Hola <%= locals.userLogged.name %>!
-        </p>
+        <div class="user-login">
+            <p>
+                Hola <%= locals.userLogged.name %>!
+            </p>
+            <img src="/img/users/<%=locals.userLogged.image%>" alt="" class="avatar">
+        </div>
         <% } else {%>
             <div class="icons">
                 <div class="icon user">

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head')%>
+        <link rel="stylesheet" href="/css/styles-form.css">
+</head>
+
+<body>
+    <%- include('../partials/header')%>
+        <main>
+            <form class="register" action="/users/edit/<%= user.id%>?_method=PUT" method="POST"
+                enctype="multipart/form-data">
+                <h2 class="titulo">Edita tus domicilios <%= user.name%>!</h2>
+                <section class="ventana-error">
+                    <% if (validator==1) { %>
+                        <%= message %>
+                            <% } %>
+                </section>
+ 
+                <div class="telefono">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <input type="text" name="calle" placeholder="Domicilio" class="campo"
+                        value="<%=user.domicilio%>">
+                </div>
+                <div class="telefono">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <input type="text" name="domicilio" placeholder="Código Postal" class="campo" value="<%=user.domicilio%>">
+                </div>
+                <div class="subir-foto telefono">
+                    <select name="pais" id="pais" class="campo">
+                        <option hidden value="No tienes medio de pago">Gestiona tus medios de pago</option>
+                        <% let options=["ARGENTINA", "BRASIL" , "CHILE" ] %>
+                            <% for (option of options) { %>
+                                <option value="<%=option%>" <%=user.medioPago && (user.medioPago==option) ? 'selected' : null%>
+                                    >
+                                    <%=option%>
+                                </option>
+                                <% } %>
+                    </select>
+                    <i class="far fa-credit-card"></i>
+                </div>
+                <div class="telefono">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <input type="text" name="domicilio" placeholder="Domicilio" class="campo" value="<%=user.domicilio%>">
+                </div>
+                <div class="telefono">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <input type="text" name="domicilio" placeholder="Domicilio" class="campo" value="<%=user.domicilio%>">
+                </div>
+                
+                
+                <div class="recuerda">
+                    <input type="checkbox" name="recuerda" id="recuerda" value="true" class="check">
+                    <label for="recuerda"> Recuerdame</label>
+                </div>
+                <div class="botones">
+                    <button type="submit" class="submit">Confirmar</button>
+                </div>
+            </form>
+        </main>
+
+        <article class="icon llamar">
+            <i class="fas fa-phone-alt"></i>
+        </article>
+
+        <%- include('../partials/footer')%>
+
+</body>
+
+</html>

@@ -27,6 +27,11 @@
                         </span>
                     </p>
                     <p class="text">
+                        <strong> Apellido: </strong><span class="text-datos">
+                            <%= user.last_name%>
+                        </span>
+                    </p>
+                    <p class="text">
                         <strong> Email: </strong><span class="text-datos">
                             <%= user.email%>
                         </span>
@@ -37,32 +42,32 @@
                         </span>
                     </p>
                     <p class="text">
-                        <strong> Domicilio: </strong>
-                        <% if (user.domicilio) { %>
-                            <span class="text-datos">
-                                <%= user.domicilio %>
-                            </span>
-                            <% } else {%>
-
-                                <span class="text-datos"> No tienes domicilio cargado </span>
-
-                                <% } %>
-                    </p>
-                    <p class="text">
                         <strong> Metodos de pago: </strong>
                         <% if (user.medioPago) { %>
                             <span class="text-datos">
                                 <%= user.medioPago %>
                             </span>
                             <% } else {%>
-
                                 <span class="text-datos"> No tienes medio de pago </span>
-
-                                <% } %>
+                            <% } %>
                     </p>
                     <div class="botones">
                         <a href="/users/profile/<%=user.id%>/edit">EDITAR PERFIL</a>
                     </div>
+                    <p class="text">
+                        <strong> Domicilio: </strong>
+                        <% if (user.domicilio) { %>
+                            <span class="text-datos">
+                                <%= user.domicilio %>
+                            </span>
+                        <% } else {%>
+                            <span class="text-datos"> No tienes domicilio cargado 
+                             <div class="info-btn">
+                                <a href="/users/domicilios/<%=user.id%>">Domicilios</a>
+                            </div>
+                            </span>
+                        <% } %>
+                    </p>
                 </div>
             </section>
             <section class="products-display">

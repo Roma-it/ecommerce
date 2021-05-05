@@ -12,18 +12,7 @@ module.exports = (sequelize, dataTypes) => {
     telefono: { type: dataTypes.INTEGER(11) },
     ofertas: dataTypes.INTEGER(11),
     tipo_persona_id: { type: dataTypes.INTEGER(11), allowNull: true },
-    dom_calle: { type: dataTypes.STRING(50), allowNull: true },
-    dom_cp: { type: dataTypes.STRING(50), allowNull: true },
-    dom_localidad: { type: dataTypes.STRING(50), allowNull: true },
-    dom_provincia_id: { type: dataTypes.INTEGER(11), allowNull: true },
-    dom_pais_id: { type: dataTypes.INTEGER(11), allowNull: true },
-    dom_env_calle: { type: dataTypes.STRING(50) },
-    dom_env_cp: { type: dataTypes.STRING(50) },
-    dom_env_localidad: { type: dataTypes.STRING(50) },
-    dom_env_provincia_id: { type: dataTypes.INTEGER(11) },
-    dom_env_pais_id: { type: dataTypes.INTEGER(11) },
     mail_confirmado: { type: dataTypes.INTEGER(11) },
-    compra_id: { type: dataTypes.INTEGER(11), allowNull: true },
     image: { type: dataTypes.STRING(250) },
     admin: { type: dataTypes.BOOLEAN },
     medioPago: { type: dataTypes.STRING(250) },
@@ -43,25 +32,13 @@ module.exports = (sequelize, dataTypes) => {
       as: "cond_fiscal",
       foreignKey: "condicion_fiscal_id",
     });
-    User.belongsTo(models.Provincia, {
-      as: "provincia",
-      foreignKey: "dom_provincia_id",
-    });
-    User.belongsTo(models.Provincia, {
-      as: "provincia_envio",
-      foreignKey: "dom_env_provincia_id",
-    });
-    User.belongsTo(models.Pais, {
-      as: "pais",
-      foreignKey: "dom_pais_id",
-    });
-    User.belongsTo(models.Pais, {
-      as: "pais_env",
-      foreignKey: "dom_env_pais_id",
+    User.hasMany(models.Domicilio, {
+      as: "domicilio",
+      foreignKey: "user_id",
     });
     User.hasMany(models.Compra, {
       as: "compras",
-      foreignKey: "compra_id",
+      foreignKey: "user_id",
     });
   };
   return User;

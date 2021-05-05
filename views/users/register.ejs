@@ -19,9 +19,13 @@
                 </section>
                 <div class="nombre">
                     <i class="fas fa-user-circle"></i>
-                    <input type="text" name="nombre" placeholder="Nombre y Apellido" class="campo"
-                        value="<%= locals.old_data ? old_data.nombre : '' %>">
-
+                    <input type="text" name="nombre" placeholder="Nombre" class="campo"
+                        value="<%= locals.old_data ? old_data.name : '' %>">
+                </div>
+                <div class="nombre">
+                    <i class="fas fa-user-circle"></i>
+                    <input type="text" name="apellido" placeholder="Apellido" class="campo"
+                        value="<%= locals.old_data ? old_data.last_name : '' %>">
                 </div>
                 <div class="email">
                     <i class="fas fa-envelope"></i>

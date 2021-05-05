@@ -9,8 +9,8 @@ const User = {
   },
   validLogin: async function (user) {
     let userToLogin = await User.findByEmail(user.email);
+    console.log("Este es USER TO LOGIN: " + userToLogin);
     userToLogin = userToLogin.dataValues;
-    //console.log("Este es USER TO LOGIN: " + userToLogin.id);
     if (userToLogin) {
       if (bcrypt.compareSync(user.password, userToLogin.pass)) {
         delete userToLogin.password;
@@ -48,6 +48,7 @@ const User = {
   create: async function (user) {
     let newUser = await db.User.create({
       name: user.nombre,
+      last_name: user.last_name,
       telefono: user.telefono,
       email: user.email,
       pass: user.password,
@@ -58,7 +59,8 @@ const User = {
   update: async function (user) {
     let userUpdated = await db.User.update(
       {
-        name: user.nombre,
+        name: user.name,
+        last_name: user.last_name,
         telefono: user.telefono,
         email: user.email,
         pass: user.password,

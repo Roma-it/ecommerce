@@ -19,7 +19,7 @@
                 </section>
                 <div class="nombre">
                     <i class="fas fa-user-circle"></i>
-                    <input type="text" name="nombre" placeholder="Nombre y Apellido" class="campo"
+                    <input id= "nombre" type="text" name="nombre" placeholder="Nombre" class="campo"
                         value="<%= locals.old_data ? old_data.nombre : user.name %>">
                     <% if (locals.errors && errors.nombre) { %>
                         <div class="mensaje-error">
@@ -27,12 +27,28 @@
                         </div>
                         <% } %>
                 </div>
+                <div class="nombre">
+                    <i class="fas fa-user-circle"></i>
+                    <input type="text" id="apellido"  name="apellido" placeholder="Apellido" class="campo"
+                        value="<%= locals.old_data ? old_data.apellido : user.last_name %>">
+                    <% if (locals.errors && errors.apellido) { %>
+                        <div class="mensaje-error">
+                            <%= errors.apellido.msg %>
+                        </div>
+                        <% } %>
+                </div>
                 <div class="subir-foto telefono">
                     <select name="medioPago" id="medioPago" class="campo">
                         <option hidden value="No tienes medio de pago">Gestiona tus medios de pago</option>
-                        <option value="VISA">VISA</option>
-                        <option value="AMEX">AMEX</option>
-                        <option value="EFECTIVO">EFECTIVO</option>
+                        <% let options = ["VISA", "AMEX", "EFECTIVO"] %>
+                        <% for (option of options) { %>
+                            <option value="<%=option%>"
+                                <%= user.medioPago && (user.medioPago == option) ? 'selected' : null%>
+                                >
+                                <%=option%>
+                            </option>
+                         <% } %>       
+                        
                         <option value="No tienes medio de pago">Eliminar medios de pago</option>
                     </select>
                     <i class="far fa-credit-card"></i>
@@ -47,15 +63,9 @@
                         </div>
                         <% } %>
                 </div>
-                <div class="telefono">
-                    <i class="fas fa-map-marked-alt"></i>
-                    <input type="text" name="domicilio" placeholder="Domicilio" class="campo"
-                        value="<%=user.domicilio%>">
-
-                </div>
                 <div class="password">
                     <i class="fas fa-lock"></i>
-                    <input type="password" name="password" placeholder="Contraseña" class="campo">
+                    <input type="password" id="password" name="password" placeholder="Contraseña" class="campo">
                     <% if (locals.errors && errors.password) { %>
                         <div class="mensaje-error">
                             <%= errors.password.msg %>
@@ -71,6 +81,11 @@
 
                     <input type="file" name="image" id="image" class="campo">
                     <i class="fas fa-camera combo"></i>
+                    <% if (locals.errors && errors.image) { %>
+                        <div class="mensaje-error">
+                            <%= errors.image.msg %>
+                        </div>
+                        <% } %>
                 </div>
                 <div class="recuerda">
                     <input type="checkbox" name="recuerda" id="recuerda" value="true" class="check">

@@ -1,11 +1,11 @@
 const path = require("path");
-const fs = require("fs");
+//const fs = require("fs");
 const { validationResult } = require("express-validator");
 const User = require("../model/Users copy");
 const bcrypt = require("bcryptjs");
-const session = require("express-session");
+//const session = require("express-session");
 const db = require("../database/models");
-const sequelize = db.sequelize;
+//const sequelize = db.sequelize;
 
 controller = {
   login: (req, res) => {
@@ -25,7 +25,7 @@ controller = {
     let result = await User.validLogin(req.body);
     if (result.loginResult) {
       req.session.userLogged = result.userToLogin;
-      console.log(req.session.userLogged);
+      console.log("Login: " + req.session.userLogged);
       if (req.body.recuerda) {
         res.cookie("userLoggedEmail", req.body.email, {
           maxAge: 1000 * 3600 * 24 * 3650,
@@ -47,7 +47,7 @@ controller = {
     let validationErrors = validationResult(req);
     if (validationErrors.isEmpty()) {
       const userInDB = await User.findByEmail(req.body.email);
-      console.log(userInDB);
+      console.log("Usuario en base al registrar: " + userInDB);
       let message = "";
       let validator = 0;
       if (userInDB) {
@@ -62,20 +62,26 @@ controller = {
         if (req.body.password == req.body.confirmPass) {
           const userToCreate = {
             nombre: req.body.nombre,
+            last_name: req.body.apellido,
             email: req.body.email,
             password: bcrypt.hashSync(req.body.password, 10),
             telefono: Number(req.body.telefono),
             image: "user.png",
           };
-          let newUser = User.create(userToCreate);
+          let newUser = await User.create(userToCreate);
+          newUser = newUser.dataValues;
+          console.log("new user: " + newUser.id);
           let userToLogin = { ...newUser };
+          console.log("user to login: " + userToLogin);
           delete userToLogin.password;
           req.session.userLogged = userToLogin;
-          res.cookie("userLoggedEmail", userToCreate.email, {
-            maxAge: 1000 * 3600 * 24 * 3650,
-          });
-          console.log(`usuario en sesion: ${req.session.userLogged}`);
-          res.redirect("/users/profile/" + req.session.userLogged.id);
+          if (req.body.recuerda) {
+            res.cookie("userLoggedEmail", userToCreate.email, {
+              maxAge: 1000 * 3600 * 24 * 3650,
+            });
+          }
+          const userLogged = await User.findByEmail(userToCreate.email);
+          res.redirect("/users/profile/" + userLogged.id);
         } else {
           message = "Las contraseñas no coinciden";
           validator = 1;
@@ -136,6 +142,63 @@ controller = {
       }
       if (req.body.nombre) {
         user.name = req.body.nombre;
+      }
+      if (req.body.apellido) {
+        user.last_name = req.body.apellido;
+      }
+      if (req.body.telefono) {
+        user.telefono = req.body.telefono;
+      }
+      if (req.file) {
+        user.image = req.file.filename;
+      }
+      await User.update(user);
+      req.session.userLogged = user;
+      res.redirect("/users/profile/" + user.id);
+    } else {
+      message = "Han habido errores al completar el formulario";
+      validator = 1;
+      res.render("./users/editProfile", {
+        message,
+        user,
+        validator,
+        errors: validationErrors.mapped(),
+        old_data: req.body,
+      });
+    }
+  },
+  domiciliosView: (req, res) => {
+    let validator = 0;
+    console.log(`usuario en sesion: ${req.session.userLogged.id}`);
+    const user = req.session.userLogged;
+    res.render("./users/editDomicilio", { user, validator });
+  },
+  domiciliosEdit: async (req, res) => {
+    let validationErrors = validationResult(req);
+    let user = await User.findByID(req.params.id);
+    let message = "";
+    let validator = 0;
+    if (validationErrors.isEmpty()) {
+      if (req.body.password) {
+        if (req.body.password == req.body.confirmPass) {
+          user.password = bcrypt.hashSync(req.body.password, 10);
+        } else {
+          message = "Las contraseñas no coinciden";
+          validator = 1;
+          res.render("./users/editProfile", { user, message, validator });
+        }
+      }
+      if (req.body.medioPago) {
+        user.medioPago = req.body.medioPago;
+      }
+      if (req.body.domicilio) {
+        user.domicilio = req.body.domicilio;
+      }
+      if (req.body.nombre) {
+        user.name = req.body.nombre;
+      }
+      if (req.body.apellido) {
+        user.last_name = req.body.apellido;
       }
       if (req.body.telefono) {
         user.telefono = req.body.telefono;

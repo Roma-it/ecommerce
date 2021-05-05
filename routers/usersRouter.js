@@ -1,22 +1,49 @@
-const express = require ('express');
+const express = require("express");
 const router = express.Router();
-const upload = require('../middlewares/multer');
-const usersController = require ('../controllers/usersController');
-const path = require ('path');
-const validations = require('../middlewares/validation');
-const accessControls = require('../middlewares/accessControls');
+const upload = require("../middlewares/multer");
+const usersController = require("../controllers/usersController");
+const path = require("path");
+const validations = require("../middlewares/validation");
+const accessControls = require("../middlewares/accessControls");
 
-router.get('/login', accessControls.loggedUser, usersController.login);
-router.get('/logout', usersController.logout);
-router.get('/admin/:id', accessControls.admin, usersController.admin);
-router.post('/login/valid', usersController.validLogin);
-router.get('/register', accessControls.loggedUser, usersController.registerView);
-router.post('/register', validations.register, usersController.register);
-router.get('/profile/:id', accessControls.notLogged, usersController.userProfile);
-router.get('/admin/userProfile/:id', accessControls.notLogged, usersController.adminUserProfile);
-router.get('/profile/:id/edit', usersController.editProfileView);
-router.put('/edit/:id', upload.single('image'), validations.editProfile, usersController.editProfile);
-router.get('/delete/:id', accessControls.admin, usersController.delete);
-router.get('/listado', usersController.listado);
+router.get("/login", accessControls.loggedUser, usersController.login);
+router.get("/logout", usersController.logout);
+router.get("/admin/:id", accessControls.admin, usersController.admin);
+router.post("/login/valid", usersController.validLogin);
+router.get(
+  "/register",
+  accessControls.loggedUser,
+  usersController.registerView
+);
+router.post("/register", validations.register, usersController.register);
+router.get(
+  "/profile/:id",
+  accessControls.notLogged,
+  usersController.userProfile
+);
+router.get(
+  "/admin/userProfile/:id",
+  accessControls.notLogged,
+  usersController.adminUserProfile
+);
+router.get("/profile/:id/edit", usersController.editProfileView);
+router.put(
+  "/edit/:id",
+  upload.single("image"),
+  validations.editProfile,
+  usersController.editProfile
+);
+router.get("/delete/:id", accessControls.admin, usersController.delete);
+router.get("/listado", accessControls.admin, usersController.listado);
+router.get(
+  "/domicilios/:id",
+  accessControls.notLogged,
+  usersController.domiciliosView
+);
+router.put(
+  "/domicilios/:id/edit",
+  accessControls.notLogged,
+  usersController.domiciliosEdit
+);
 
 module.exports = router;
