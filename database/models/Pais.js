@@ -4,12 +4,12 @@ module.exports = (sequelize, dataTypes) => {
     {
       nombre: { type: dataTypes.STRING(20), allowNull: false },
     },
-    { timestamps: false }
+    { timestamps: false, tablename: "paises" }
   );
   Pais.associate = function (models) {
-    Pais.hasMany(models.User, {
-      as: "usuarios",
-      foreignKey: "dom_pais_id",
+    Pais.hasMany(models.Domicilio, {
+      as: "domicilios",
+      foreignKey: "pais_id",
     });
   };
   return Pais;

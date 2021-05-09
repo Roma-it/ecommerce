@@ -12,9 +12,9 @@ module.exports = function (sequelize, dataTypes) {
       as: "prov_pais",
       foreignKey: "pais_id",
     });
-    Provincia.hasMany(models.User, {
-      as: "usuarios",
-      foreignKey: "dom_provincia_id",
+    Provincia.hasMany(models.Domicilio, {
+      as: "domicilio",
+      foreignKey: "provincia_id",
     });
   };
   return Provincia;

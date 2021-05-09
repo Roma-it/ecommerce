@@ -1,11 +1,9 @@
 const path = require("path");
-//const fs = require("fs");
 const { validationResult } = require("express-validator");
 const User = require("../model/Users copy");
+const Domicilio = require("../model/Domicilio");
 const bcrypt = require("bcryptjs");
-//const session = require("express-session");
 const db = require("../database/models");
-//const sequelize = db.sequelize;
 
 controller = {
   login: (req, res) => {
@@ -106,7 +104,7 @@ controller = {
   userProfile: (req, res) => {
     console.log(`usuario en sesion: ${req.session.userLogged.id}`);
     const user = req.session.userLogged;
-    res.render("./users/profile", { user });
+    res.send(user);
   },
   adminUserProfile: (req, res) => {
     let users = User.db();
@@ -167,11 +165,48 @@ controller = {
       });
     }
   },
-  domiciliosView: (req, res) => {
+  domiciliosView: async (req, res) => {
     let validator = 0;
     console.log(`usuario en sesion: ${req.session.userLogged.id}`);
     const user = req.session.userLogged;
-    res.render("./users/editDomicilio", { user, validator });
+    const userAddress = await db.Domicilio.findAll({
+      where: { user_id: user.id },
+    });
+    console.log("Address " + userAddress[0].calle);
+    const paises = await db.Pais.findAll();
+    const provincias = await db.Provincia.findAll();
+    res.render("./users/editDomicilio", {
+      user,
+      validator,
+      paises,
+      provincias,
+      userAddress,
+    });
+  },
+  createAddress: async (req, res) => {
+    let validationErrors = validationResult(req);
+    if (validationErrors.isEmpty()) {
+      const address = {
+        user_id: req.params.id,
+        calle: req.body.calle,
+        cp: req.body.cp,
+        pais: req.body.pais,
+        provincia: req.body.provincia,
+        localidad: req.body.localidad,
+        envio: req.body.tipo,
+      };
+      const newAddress = await Domicilio.create(address);
+      res.redirect("/users/profile/" + address.user_id);
+    } else {
+      validator = 1;
+      message = "Han habido errores al completar el formulario";
+      res.render("./users/editDomicilio", {
+        message,
+        validator,
+        errors: validationErrors.mapped(),
+        old_data: req.body,
+      });
+    }
   },
   domiciliosEdit: async (req, res) => {
     let validationErrors = validationResult(req);
@@ -179,35 +214,25 @@ controller = {
     let message = "";
     let validator = 0;
     if (validationErrors.isEmpty()) {
-      if (req.body.password) {
-        if (req.body.password == req.body.confirmPass) {
-          user.password = bcrypt.hashSync(req.body.password, 10);
-        } else {
-          message = "Las contraseñas no coinciden";
-          validator = 1;
-          res.render("./users/editProfile", { user, message, validator });
-        }
+      if (req.body.calle) {
+        user.calle = req.body.calle;
       }
-      if (req.body.medioPago) {
-        user.medioPago = req.body.medioPago;
+      if (req.body.cp) {
+        user.cp = req.body.cp;
       }
-      if (req.body.domicilio) {
-        user.domicilio = req.body.domicilio;
+      if (req.body.pais) {
+        user.pais = req.body.pais;
       }
-      if (req.body.nombre) {
-        user.name = req.body.nombre;
+      if (req.body.provincia) {
+        user.provincia = req.body.provincia;
       }
-      if (req.body.apellido) {
-        user.last_name = req.body.apellido;
-      }
-      if (req.body.telefono) {
-        user.telefono = req.body.telefono;
+      if (req.body.localidad) {
+        user.localidad = req.body.localidad;
       }
       if (req.file) {
         user.image = req.file.filename;
       }
-      await User.update(user);
-      req.session.userLogged = user;
+      await User.updateDomicilio(user);
       res.redirect("/users/profile/" + user.id);
     } else {
       message = "Han habido errores al completar el formulario";

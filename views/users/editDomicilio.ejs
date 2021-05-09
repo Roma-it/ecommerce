@@ -9,9 +9,8 @@
 <body>
     <%- include('../partials/header')%>
         <main>
-            <form class="register" action="/users/edit/<%= user.id%>?_method=PUT" method="POST"
-                enctype="multipart/form-data">
-                <h2 class="titulo">Edita tus domicilios <%= user.name%>!</h2>
+            <form class="register" action="/users/domicilios/edit/<%= user.id%>?_method=PUT" method="POST">
+                <h2 class="titulo">Agrega un domicilio <%= user.name%>!</h2>
                 <section class="ventana-error">
                     <% if (validator==1) { %>
                         <%= message %>
@@ -21,38 +20,48 @@
                 <div class="telefono">
                     <i class="fas fa-map-marked-alt"></i>
                     <input type="text" name="calle" placeholder="Domicilio" class="campo"
-                        value="<%=user.domicilio%>">
+                        value="<%=userAddress[0].calle%>">
                 </div>
                 <div class="telefono">
                     <i class="fas fa-map-marked-alt"></i>
-                    <input type="text" name="domicilio" placeholder="Código Postal" class="campo" value="<%=user.domicilio%>">
+                    <input type="text" name="cp" placeholder="Código Postal" class="campo" value="<%=userAddress[0].cp%>">
                 </div>
                 <div class="subir-foto telefono">
                     <select name="pais" id="pais" class="campo">
-                        <option hidden value="No tienes medio de pago">Gestiona tus medios de pago</option>
-                        <% let options=["ARGENTINA", "BRASIL" , "CHILE" ] %>
-                            <% for (option of options) { %>
-                                <option value="<%=option%>" <%=user.medioPago && (user.medioPago==option) ? 'selected' : null%>
-                                    >
-                                    <%=option%>
-                                </option>
-                                <% } %>
+                        <option hidden value="">País</option>
+                        <% for (pais of paises) { %>
+                            <option value="<%=pais.dataValues.id%>" 
+                            <%=userAddress.dataValues &&
+                                (userAddress.dataValues.pais.id==pais.dataValues.id) ? 'selected' : null %>
+                                >
+                                <%=pais.dataValues.nombre%>
+                            </option>
+                            <% } %>
                     </select>
-                    <i class="far fa-credit-card"></i>
+                    <i class="fas fa-map-marked-alt"></i>
+                </div>
+                <div class="subir-foto telefono">
+                    <select name="provincia" id="provincia" class="campo">
+                        <option hidden value="">Provincia</option>
+                        <% for (provincia of provincias) { %>
+                            <option value="<%=provincia.dataValues.id%>" 
+                            <%=userAddress.dataValues && 
+                            (userAddress.provincia.id==provincia.dataValues.id)
+                                ? 'selected' : null %>
+                                >
+                                <%=provincia.dataValues.nombre%>
+                            </option>
+                            <% } %>
+                    </select>
+                    <i class="fas fa-map-marked-alt"></i>
                 </div>
                 <div class="telefono">
                     <i class="fas fa-map-marked-alt"></i>
-                    <input type="text" name="domicilio" placeholder="Domicilio" class="campo" value="<%=user.domicilio%>">
+                    <input type="text" name="localidad" placeholder="Localidad" class="campo" value="<%=user.domicilio%>">
                 </div>
-                <div class="telefono">
-                    <i class="fas fa-map-marked-alt"></i>
-                    <input type="text" name="domicilio" placeholder="Domicilio" class="campo" value="<%=user.domicilio%>">
-                </div>
-                
-                
                 <div class="recuerda">
-                    <input type="checkbox" name="recuerda" id="recuerda" value="true" class="check">
-                    <label for="recuerda"> Recuerdame</label>
+                    <input type="checkbox" name="tipo_dom_env" id="tipo_dom_env" value="true" class="check">
+                    <label for="tipo_dom_env"> Domicilio de envío</label>
                 </div>
                 <div class="botones">
                     <button type="submit" class="submit">Confirmar</button>

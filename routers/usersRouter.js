@@ -41,9 +41,9 @@ router.get(
   usersController.domiciliosView
 );
 router.put(
-  "/domicilios/:id/edit",
+  "/domicilios/edit/:id",
   accessControls.notLogged,
-  usersController.domiciliosEdit
+  usersController.createAddress
 );
 
 module.exports = router;
