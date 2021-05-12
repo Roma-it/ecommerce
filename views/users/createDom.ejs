@@ -9,8 +9,8 @@
 <body>
     <%- include('../partials/header')%>
         <main>
-            <form class="register" action="/users/domicilios/edit/<%= address.id%>?_method=PUT" method="POST">
-                <h2 class="titulo">Edita tu domicilio <%= user.name%>!</h2>
+            <form class="register" action="/users/domicilios/create/<%= user.id%>" method="POST">
+                <h2 class="titulo">Agrega un domicilio <%= user.name%>!</h2>
                 <section class="ventana-error">
                     <% if (validator==1) { %>
                         <%= message %>
@@ -20,20 +20,17 @@
                 <div class="telefono">
                     <i class="fas fa-map-marked-alt"></i>
                     <input type="text" name="calle" placeholder="Domicilio" class="campo"
-                        value="<%=address.calle%>">
+                        value="">
                 </div>
                 <div class="telefono">
                     <i class="fas fa-map-marked-alt"></i>
-                    <input type="text" name="cp" placeholder="Código Postal" class="campo" value="<%=address.cp%>">
+                    <input type="text" name="cp" placeholder="Código Postal" class="campo" value="">
                 </div>
                 <div class="subir-foto telefono">
                     <select name="pais" id="pais" class="campo">
                         <option hidden value="">País</option>
                         <% for (pais of paises) { %>
-                            <option value="<%=pais.dataValues.id%>" 
-                            <%=address.paises &&
-                                (address.paises.id==pais.dataValues.id) ? 'selected' : null %>
-                                >
+                            <option value="<%=pais.dataValues.id%>">                                                  >
                                 <%=pais.dataValues.nombre%>
                             </option>
                             <% } %>
@@ -44,11 +41,7 @@
                     <select name="provincia" id="provincia" class="campo">
                         <option hidden value="">Provincia</option>
                         <% for (provincia of provincias) { %>
-                            <option value="<%=provincia.dataValues.id%>" 
-                            <%=address.provincias && 
-                            (address.provincias.id==provincia.dataValues.id)
-                                ? 'selected' : null %>
-                                >
+                            <option value="<%=provincia.dataValues.id%>">                                >
                                 <%=provincia.dataValues.nombre%>
                             </option>
                             <% } %>
@@ -57,21 +50,14 @@
                 </div>
                 <div class="telefono">
                     <i class="fas fa-map-marked-alt"></i>
-                    <input type="text" name="localidad" placeholder="Localidad" class="campo" value="<%=address.localidad%>">
+                    <input type="text" name="localidad" placeholder="Localidad" class="campo" value="">
                 </div>
                 <div class="recuerda">
-                    <input type="checkbox" name="envio" id="envio" value="true" class="check"
-                    <%= address.envio ? "checked" : null %>
-                    >
-                    <label for="envio"> Domicilio de envío</label>
+                    <input type="checkbox" name="envio" id="envio" value="true" class="check">
+                    <label for="tipo_dom_env"> Domicilio de envío</label>
                 </div>
                 <div class="botones">
                     <button type="submit" class="submit">Confirmar</button>
-                </div>
-            </form>
-            <form class="register" action="/users/domicilios/delete/<%= address.id%>?_method=DELETE" method="POST">
-                <div class="botones">
-                    <button type="submit" class="submit">Eliminar</button>
                 </div>
             </form>
         </main>

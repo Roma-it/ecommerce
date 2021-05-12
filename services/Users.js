@@ -8,9 +8,7 @@ const User = {
     return all;
   },
   validLogin: async function (user) {
-    let userToLogin = await User.findByEmail(user.email, {
-      include: [{ associaton: "domicilio" }],
-    });
+    let userToLogin = await User.findByEmail(user.email);
     console.log("Este es USER TO LOGIN: " + userToLogin);
     userToLogin = userToLogin.dataValues;
     if (userToLogin) {
@@ -38,18 +36,13 @@ const User = {
     }
   },
   findByID: async function (id) {
-    let userFound = await db.User.findByPk(id, {
-      include: ["domicilio", "usuario"],
-    });
+    let userFound = await db.User.findByPk(id);
     return userFound;
   },
   findByEmail: async function (mail) {
-    let userFound = await db.User.findOne(
-      {
-        where: { email: mail },
-      },
-      { include: [{ association: "domicilio" }] }
-    );
+    let userFound = await db.User.findOne({
+      where: { email: mail },
+    });
     return userFound;
   },
   create: async function (user) {
@@ -75,20 +68,6 @@ const User = {
         medioPago: user.medioPago,
       },
       { where: { id: user.id } }
-    );
-    return userUpdated;
-  },
-  updateDomicilio: async function (user) {
-    let domUpdated = await db.Domicilio.update(
-      {
-        calle: user.calle,
-        cp: user.cp,
-        pais_id: user.pais,
-        localidad: user.localidad,
-        provincia_id: user.provincia,
-        tipo_id: user.tipo,
-      },
-      { where: { user_id: user.id } }
     );
     return userUpdated;
   },

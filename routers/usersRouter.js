@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const upload = require("../middlewares/multer");
 const usersController = require("../controllers/usersController");
-const path = require("path");
 const validations = require("../middlewares/validation");
 const accessControls = require("../middlewares/accessControls");
 
@@ -43,7 +42,14 @@ router.get(
 router.put(
   "/domicilios/edit/:id",
   accessControls.notLogged,
-  usersController.createAddress
+  usersController.domiciliosEdit
 );
+router.get(
+  "/domicilios/create/:id",
+  accessControls.notLogged,
+  usersController.domiciliosCreateView
+);
+router.post("/domicilios/create/:id", usersController.createAddress);
+router.delete("/domicilios/delete/:id", usersController.deleteDom);
 
 module.exports = router;

@@ -54,20 +54,32 @@
                     <div class="botones">
                         <a href="/users/profile/<%=user.id%>/edit">EDITAR PERFIL</a>
                     </div>
-                    <p class="text">
-                        <strong> Domicilio: </strong>
-                        <% if (user.domicilio) { %>
+                    
+                        <% if (domicilio) { %>
+                            <% for(let i = 0; i < domicilio.length; i++) { %>
+                                <p class="text">
+                                    <strong> Domicilio <%= i+1%>: </strong>
                             <span class="text-datos">
-                                <%= user.domicilio %>
+                                <%= `${domicilio[i].calle}, ${domicilio[i].localidad}, ${domicilio[i].provincias.nombre}, ${domicilio[i].paises.nombre}`%>
+                                <% if (domicilio[i].envio) {%>
+                                   <b> <%="- Domicilio de Envio Seleccionado"%></b>
+                                    <% } %>
                             </span>
-                        <% } else {%>
-                            <span class="text-datos"> <%= user %>
-                             <div class="info-btn">
-                                <a href="/users/domicilios/<%=user.id%>">Domicilios</a>
+                            <div class="info-btn edit-dom">
+                                <a href="/users/domicilios/<%=domicilio[i].id%>">Editar</a>
                             </div>
-                            </span>
+                            </p>
                         <% } %>
-                    </p>
+                        <% } else {%>
+                            <p class="text">
+                                <strong> Domicilio: </strong>
+                            <span class="text-datos"> <%= "No tienes domicilio" %>
+                            </span>
+                            </p>
+                        <% } %>
+                    <div class="botones">
+                        <a href="/users/domicilios/create/<%=user.id%>">AGREGAR DOMICILIO</a>
+                    </div>
                 </div>
             </section>
             <section class="products-display">

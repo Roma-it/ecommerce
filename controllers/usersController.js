@@ -1,7 +1,7 @@
 const path = require("path");
 const { validationResult } = require("express-validator");
-const User = require("../model/Users copy");
-const Domicilio = require("../model/Domicilio");
+const User = require("../services/Users");
+const Domicilio = require("../services/Domicilio");
 const bcrypt = require("bcryptjs");
 const db = require("../database/models");
 
@@ -45,7 +45,6 @@ controller = {
     let validationErrors = validationResult(req);
     if (validationErrors.isEmpty()) {
       const userInDB = await User.findByEmail(req.body.email);
-      console.log("Usuario en base al registrar: " + userInDB);
       let message = "";
       let validator = 0;
       if (userInDB) {
@@ -68,9 +67,7 @@ controller = {
           };
           let newUser = await User.create(userToCreate);
           newUser = newUser.dataValues;
-          console.log("new user: " + newUser.id);
           let userToLogin = { ...newUser };
-          console.log("user to login: " + userToLogin);
           delete userToLogin.password;
           req.session.userLogged = userToLogin;
           if (req.body.recuerda) {
@@ -101,10 +98,15 @@ controller = {
       });
     }
   },
-  userProfile: (req, res) => {
+  userProfile: async (req, res) => {
     console.log(`usuario en sesion: ${req.session.userLogged.id}`);
     const user = req.session.userLogged;
-    res.send(user);
+    let domicilio = await db.Domicilio.findAll({
+      include: [{ association: "paises" }, { association: "provincias" }],
+      where: { user_id: user.id },
+    });
+    //res.send([user, domicilio]);
+    res.render("./users/profile", { user, domicilio });
   },
   adminUserProfile: (req, res) => {
     let users = User.db();
@@ -169,10 +171,11 @@ controller = {
     let validator = 0;
     console.log(`usuario en sesion: ${req.session.userLogged.id}`);
     const user = req.session.userLogged;
-    const userAddress = await db.Domicilio.findAll({
-      where: { user_id: user.id },
+    const params = req.params.id;
+    const address = await db.Domicilio.findOne({
+      include: ["provincias", "paises"],
+      where: { id: params },
     });
-    console.log("Address " + userAddress[0].calle);
     const paises = await db.Pais.findAll();
     const provincias = await db.Provincia.findAll();
     res.render("./users/editDomicilio", {
@@ -180,12 +183,28 @@ controller = {
       validator,
       paises,
       provincias,
-      userAddress,
+      address,
+    });
+  },
+  domiciliosCreateView: async (req, res) => {
+    let validator = 0;
+    const user = req.session.userLogged;
+    const paises = await db.Pais.findAll();
+    const provincias = await db.Provincia.findAll();
+    res.render("./users/createDom", {
+      user,
+      validator,
+      paises,
+      provincias,
     });
   },
   createAddress: async (req, res) => {
     let validationErrors = validationResult(req);
+    let domEnvio = 0;
     if (validationErrors.isEmpty()) {
+      if (req.body.envio) {
+        domEnvio = 1;
+      }
       const address = {
         user_id: req.params.id,
         calle: req.body.calle,
@@ -193,7 +212,7 @@ controller = {
         pais: req.body.pais,
         provincia: req.body.provincia,
         localidad: req.body.localidad,
-        envio: req.body.tipo,
+        envio: domEnvio,
       };
       const newAddress = await Domicilio.create(address);
       res.redirect("/users/profile/" + address.user_id);
@@ -210,30 +229,33 @@ controller = {
   },
   domiciliosEdit: async (req, res) => {
     let validationErrors = validationResult(req);
-    let user = await User.findByID(req.params.id);
+    let domicilio = await Domicilio.findByID(req.params.id);
+    console.log("Domicilio en controler: " + domicilio);
     let message = "";
     let validator = 0;
+    domicilio.envio = 0;
     if (validationErrors.isEmpty()) {
       if (req.body.calle) {
-        user.calle = req.body.calle;
+        domicilio.calle = req.body.calle;
       }
       if (req.body.cp) {
-        user.cp = req.body.cp;
+        domicilio.cp = req.body.cp;
       }
       if (req.body.pais) {
-        user.pais = req.body.pais;
+        domicilio.pais = req.body.pais;
       }
       if (req.body.provincia) {
-        user.provincia = req.body.provincia;
+        domicilio.provincia = req.body.provincia;
       }
       if (req.body.localidad) {
-        user.localidad = req.body.localidad;
+        domicilio.localidad = req.body.localidad;
       }
-      if (req.file) {
-        user.image = req.file.filename;
+      if (req.body.envio) {
+        console.log("ENVIO");
+        domicilio.envio = 1;
       }
-      await User.updateDomicilio(user);
-      res.redirect("/users/profile/" + user.id);
+      await Domicilio.updateDomicilio(domicilio);
+      res.redirect("/users/profile/" + domicilio.user_id);
     } else {
       message = "Han habido errores al completar el formulario";
       validator = 1;
@@ -245,6 +267,11 @@ controller = {
         old_data: req.body,
       });
     }
+  },
+  deleteDom: async (req, res) => {
+    let domicilio = await Domicilio.findByID(req.params.id);
+    await Domicilio.delete(req.params.id);
+    res.redirect("/users/profile/" + domicilio.user_id);
   },
   delete: (req, res) => {
     User.delete(req.params.id);
