@@ -1,5 +1,6 @@
-window.addEventListener("load", function () {
+window.addEventListener("load", async function () {
   let nombre = document.getElementById("nombre");
+  let emailField = document.getElementById("email");
   let apellido = document.getElementById("apellido");
   let pass = document.getElementById("password");
   let calle = document.getElementById("calle");
@@ -47,6 +48,22 @@ window.addEventListener("load", function () {
   if (localidad) {
     localidad.addEventListener("input", () => {
       minChar(localidad, 4);
+    });
+  }
+  const data = await fetch("http://localhost:4000/user");
+  const users = await data.json();
+  if (email) {
+    email.addEventListener("input", () => {
+      const found = users.find((user) => user.email == emailField.value);
+      if (found) {
+        emailField.style.color = "red";
+        emailField.style.backgroundColor = "orange";
+        error.innerHTML = `El email ya existe`;
+      } else {
+        error.innerHTML = "";
+        emailField.style.color = "black";
+        emailField.style.backgroundColor = "white";
+      }
     });
   }
 });

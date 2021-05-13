@@ -29,7 +29,7 @@
                 </div>
                 <div class="email">
                     <i class="fas fa-envelope"></i>
-                    <input type="email" name="email" placeholder="Email" class="campo"
+                    <input type="email" id="email" name="email" placeholder="Email" class="campo"
                         value="<%= locals.old_data ? old_data.email : '' %>">
                     <% if (locals.errors && errors.email) { %>
                         <div class="mensaje-error">
