@@ -219,18 +219,26 @@ controller = {
     } else {
       validator = 1;
       message = "Han habido errores al completar el formulario";
-      res.render("./users/editDomicilio", {
+      const user = req.session.userLogged;
+      const paises = await db.Pais.findAll();
+      const provincias = await db.Provincia.findAll();
+      const old_data = req.body;
+      old_data.pais = parseInt(req.body.pais);
+      old_data.provincia = parseInt(req.body.provincia);
+      res.render("./users/createDom", {
         message,
+        user,
+        paises,
+        provincias,
         validator,
         errors: validationErrors.mapped(),
-        old_data: req.body,
+        old_data,
       });
     }
   },
   domiciliosEdit: async (req, res) => {
     let validationErrors = validationResult(req);
     let domicilio = await Domicilio.findByID(req.params.id);
-    console.log("Domicilio en controler: " + domicilio);
     let message = "";
     let validator = 0;
     domicilio.envio = 0;
@@ -251,7 +259,6 @@ controller = {
         domicilio.localidad = req.body.localidad;
       }
       if (req.body.envio) {
-        console.log("ENVIO");
         domicilio.envio = 1;
       }
       await Domicilio.updateDomicilio(domicilio);
@@ -259,12 +266,23 @@ controller = {
     } else {
       message = "Han habido errores al completar el formulario";
       validator = 1;
-      res.render("./users/editProfile", {
+      const address = domicilio;
+      const user = req.session.userLogged;
+      const paises = await db.Pais.findAll();
+      const provincias = await db.Provincia.findAll();
+      const old_data = req.body;
+      old_data.pais = parseInt(req.body.pais);
+      old_data.provincia = parseInt(req.body.provincia);
+      //res.send(old_data);
+      res.render("./users/editDomicilio", {
         message,
         user,
+        paises,
+        provincias,
+        address,
         validator,
         errors: validationErrors.mapped(),
-        old_data: req.body,
+        old_data,
       });
     }
   },

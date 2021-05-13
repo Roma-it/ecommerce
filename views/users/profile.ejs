@@ -55,18 +55,18 @@
                         <a href="/users/profile/<%=user.id%>/edit">EDITAR PERFIL</a>
                     </div>
                     
-                        <% if (domicilio) { %>
-                            <% for(let i = 0; i < domicilio.length; i++) { %>
+                        <% if (user.domicilio) { %>
+                            <% for(let i = 0; i < user.domicilio.length; i++) { %>
                                 <p class="text">
                                     <strong> Domicilio <%= i+1%>: </strong>
                             <span class="text-datos">
-                                <%= `${domicilio[i].calle}, ${domicilio[i].localidad}, ${domicilio[i].provincias.nombre}, ${domicilio[i].paises.nombre}`%>
-                                <% if (domicilio[i].envio) {%>
+                                <%= `${user.domicilio[i].calle}, CP ${user.domicilio[i].cp}, ${user.domicilio[i].localidad}, ${user.domicilio[i].provincias.nombre}, ${user.domicilio[i].paises.nombre}`%>
+                                <% if (user.domicilio[i].envio) {%>
                                    <b> <%="- Domicilio de Envio Seleccionado"%></b>
                                     <% } %>
                             </span>
                             <div class="info-btn edit-dom">
-                                <a href="/users/domicilios/<%=domicilio[i].id%>">Editar</a>
+                                <a href="/users/domicilios/<%=user.domicilio[i].id%>">Editar</a>
                             </div>
                             </p>
                         <% } %>

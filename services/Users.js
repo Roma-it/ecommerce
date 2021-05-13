@@ -42,6 +42,12 @@ const User = {
   findByEmail: async function (mail) {
     let userFound = await db.User.findOne({
       where: { email: mail },
+      include: [
+        {
+          association: "domicilio",
+          include: [{ association: "paises" }, { association: "provincias" }],
+        },
+      ],
     });
     return userFound;
   },

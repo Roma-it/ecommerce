@@ -67,4 +67,15 @@ module.exports = {
         "Solo puedes subir imagenes con extension JPG, JPEG, PNG o GIF"
       ),
   ],
+  editAddress: [
+    check("calle").notEmpty().withMessage("Debes completar el domicilio"),
+    check("cp").notEmpty().withMessage("Debes completar el código postal"),
+    check("pais").notEmpty().withMessage("Debes seleccionar un país"),
+    check("provincia")
+      .notEmpty()
+      .withMessage("Debes seleccionar una provincia"),
+    check("localidad")
+      .notEmpty()
+      .withMessage("Debes seleccionar una localidad"),
+  ],
 };

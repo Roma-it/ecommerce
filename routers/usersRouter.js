@@ -42,6 +42,7 @@ router.get(
 router.put(
   "/domicilios/edit/:id",
   accessControls.notLogged,
+  validations.editAddress,
   usersController.domiciliosEdit
 );
 router.get(
@@ -49,7 +50,11 @@ router.get(
   accessControls.notLogged,
   usersController.domiciliosCreateView
 );
-router.post("/domicilios/create/:id", usersController.createAddress);
+router.post(
+  "/domicilios/create/:id",
+  validations.editAddress,
+  usersController.createAddress
+);
 router.delete("/domicilios/delete/:id", usersController.deleteDom);
 
 module.exports = router;
