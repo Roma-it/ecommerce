@@ -38,12 +38,12 @@
                         <% } %>
                 </div>
                 <div class="subir-foto telefono">
-                    <select name="medioPago" id="medioPago" class="campo">
+                    <select name="medio_pago" id="medio_pago" class="campo">
                         <option hidden value="No tienes medio de pago">Gestiona tus medios de pago</option>
                         <% let options = ["VISA", "AMEX", "EFECTIVO"] %>
                         <% for (option of options) { %>
                             <option value="<%=option%>"
-                                <%= user.medioPago && (user.medioPago == option) ? 'selected' : null%>
+                                <%= user.medio_pago && (user.medio_pago == option) ? 'selected' : null%>
                                 >
                                 <%=option%>
                             </option>

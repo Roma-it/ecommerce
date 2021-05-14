@@ -6,7 +6,7 @@
         "telefono": "4075975345345",
         "password": "11111",
         "image": "1614030889974_img_.jpg",
-        "medioPago": "No tienes medio de pago",
+        "medio_pago": "No tienes medio de pago",
         "domicilio": "Catamarca 2345"
     },
     {
@@ -16,7 +16,7 @@
         "telefono": "34356",
         "password": "er",
         "image": "1614033468118_img_.jpg",
-        "medioPago": "VISA",
+        "medio_pago": "VISA",
         "domicilio": "Catamarca"
     },
     {
@@ -26,7 +26,7 @@
         "telefono": "43411172",
         "password": "Juan",
         "image": "1614035284460_img_.jpg",
-        "medioPago": "VISA",
+        "medio_pago": "VISA",
         "domicilio": "Garay"
     },
     {
