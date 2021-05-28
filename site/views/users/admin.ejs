@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head')%>
+        <link rel="stylesheet" href="/css/styles-form.css">
+        <link rel="stylesheet" href="/css/admin.css">
+</head>
+
+<body>
+    <%- include('../partials/header')%>
+        <main>
+
+            <h2 class="titulo">
+                <%=user.nombre%> Bienvenid@ administrador
+            </h2>
+            <h3 class="center">Paneles de administracion</h3>
+            <div class="btn-container">
+                <div class="botones">
+                    <a href="/users/listado">USUARIOS</a>
+                </div>
+                <div class="botones">
+                    <a href="/products/listado">PRODUCTOS</a>
+                </div>
+                <div class="botones">
+                    <a href="/products/create">CREAR PRODUCTO</a>
+                </div>
+            </div>
+        </main>
+        <article class="icon llamar">
+            <i class="fas fa-phone-alt"></i>
+        </article>
+        <%- include('../partials/footer')%>
+
+</body>
+
+</html>
