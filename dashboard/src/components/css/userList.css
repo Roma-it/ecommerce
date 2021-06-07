@@ -1,0 +1,51 @@
+.margin-top {
+  margin-top: 15px;
+}
+.icon-login {
+  max-width: 200px;
+  margin: auto;
+}
+.icon-login img {
+  width: 100%;
+  box-shadow: 2px 2px 10px rgb(12, 62, 155);
+}
+.user-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border-bottom: solid 1px red;
+}
+.eliminar {
+  background-color: red;
+  margin: 5px;
+}
+.eliminar a,
+.ver a {
+  color: white;
+  font-size: 0.9rem;
+}
+.ver {
+  background-color: green;
+  margin: 5px;
+}
+.user-list-text {
+  font-size: 0.8rem;
+  font-family: sans-serif;
+  margin: 5px 0;
+}
+.flow-btns {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding: 0 1rem;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+@media (min-width: 1200px) {
+  .user-list {
+    flex-direction: row;
+  }
+}

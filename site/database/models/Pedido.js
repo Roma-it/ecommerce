@@ -6,17 +6,18 @@ module.exports = function (sequelize, dataTypes) {
             cantidad: { type: dataTypes.INTEGER(11), allowNull: false },
             user_id: { type: dataTypes.INTEGER(11), allowNull: false },
             compra_id: { type: dataTypes.INTEGER(11), allowNull: true },
-            precio_compra: { type: dataTypes.INTEGER(11), allowNull: true },
+            precio_compra: { type: dataTypes.DOUBLE, allowNull: true },
         },
         {
             timestamps: true,
             paranoid: true,
+            tableName: "pedidos",
         }
     );
     Pedido.associate = function (models) {
         Pedido.belongsTo(models.Compra, {
             as: "compra",
-            foreignKey: "pedido_id",
+            foreignKey: "compra_id",
         });
         Pedido.belongsTo(models.Producto, {
             as: "producto",

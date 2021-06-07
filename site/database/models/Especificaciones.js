@@ -38,7 +38,7 @@ module.exports = function (sequelize, dataTypes) {
                 type: dataTypes.INTEGER(2).UNSIGNED,
                 allowNull: true,
             },
-            tamaño: {
+            tamano: {
                 type: dataTypes.STRING(10),
                 allowNull: true,
             },
@@ -50,7 +50,7 @@ module.exports = function (sequelize, dataTypes) {
                 type: dataTypes.INTEGER(5).UNSIGNED,
                 allowNull: true,
             },
-            tamaño_fisico: {
+            tamano_fisico: {
                 type: dataTypes.STRING,
                 allowNull: true,
             },
@@ -62,6 +62,7 @@ module.exports = function (sequelize, dataTypes) {
         {
             timestamps: true,
             paranoid: true,
+            tableName: "especificaciones",
         }
     );
     Especificaciones.associate = function (models) {

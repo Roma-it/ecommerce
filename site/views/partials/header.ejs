@@ -9,9 +9,9 @@
     <form action="/products/search" method="GET" class="buscar">
         <div class="barra-busqueda">
             <input type="search" name="busqueda" placeholder="Buscar productos" class="campo-busqueda">
-            
+            <button class="disapear">
                 <i class="fas fa-search" id="lupa"></i>
-           
+            </button>
         </div>
     </form>
 
@@ -22,31 +22,43 @@
                     <i class="fas fa-user-edit"></i>
                 </a>
             </div>
+            <div class="icon user">
             <a href="/users/logout">
                 <i class="fas fa-sign-out-alt icon"></i>
             </a>
+            </div>
             <% if (locals.userLogged.admin) { %>
-                <div class="icon cart">
+                <div class="icon user">
                     <a href="/users/admin/<%=locals.userLogged.id%>">
                         <i class="fas fa-user-cog"></i>
                     </a>
                 </div>
                 <% } %>
-                    <div class="icon cart">
-                        <a href="/products/cart">
-                            <i class="fas fa-cart-plus"></i>
-                        </a>
-                    </div>
-                    <div class="icon lupa">
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <div class="icon menu-btn">
-                        <i class="fas fa-bars"></i>
-                    </div>
+                    <% if (locals.isLogged) { %>
+                        <div class="icon user">
+                            <a href="/products/cart">
+                                <i class="fas fa-cart-plus"></i>
+                            </a>
+                        </div>
+                        <% } else { %>
+                            <div class="icon user">
+                                <a href="/products/cart">
+                                    <i class="fas fa-cart"></i>
+                                </a>
+                            </div>
+                            <% } %>
+                                <div class="icon lupa">
+                                    <a href="/products/mobile/search"><i class="fas fa-search"></i></a>
+                                </div>
+                                <div class="icon menu-btn">
+                                    <a href="/products"><i class="fas fa-bars"></i></a>
+                                </div>
         </div>
         <div class="user-login">
             <p>
-                Hola <strong><%= locals.userLogged.name %></strong>!
+                Hola <strong>
+                    <%= locals.userLogged.name %>
+                </strong>!
             </p>
             <img src="/img/users/<%=locals.userLogged.image%>" alt="" class="avatar">
         </div>
@@ -62,17 +74,17 @@
                         <i class="fas fa-sign-in-alt"></i>
                     </a>
                 </div>
-                <div class="icon cart">
+                <div class="icon user">
                     <a href="/products/cart">
                         <i class="fas fa-cart-plus"></i>
                     </a>
                 </div>
-                <div class="icon lupa">
-                    <i class="fas fa-search"></i>
-                </div>
-                <div class="icon menu-btn">
-                    <i class="fas fa-bars"></i>
-                </div>
+            <div class="icon lupa">
+                <a href="/products/mobile/search"><i class="fas fa-search"></i></a>
+            </div>
+            <div class="icon menu-btn">
+                <a href="/products"><i class="fas fa-bars"></i></a>
+            </div>
             </div>
             <% } %>
 
@@ -81,7 +93,7 @@
                         <li class="menu-item"><a href="/products">GamingPC</a></li>
                         <li class="menu-item"><a href="/products">GamingLaptops</a></li>
                         <li class="menu-item"><a href="/products">Components</a></li>
-                        <li class="menu-item"><a href="/products">Accesories</a></li>
+                        <li class="menu-item"><a href="/products/cart/buy">Compras</a></li>
                     </ul>
                 </nav>
 </header>

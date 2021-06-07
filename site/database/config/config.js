@@ -1,6 +1,7 @@
 module.exports = {
   development: {
     username: "root",
+    //password: process.env.SQL_PASSWORD,
     password: null,
     database: "pc_components",
     loggin: false,
@@ -15,10 +16,10 @@ module.exports = {
     dialect: "mysql",
   },
   production: {
-    username: "root",
-    password: null,
-    database: "database_production",
-    host: "127.0.0.1",
+    username: process.env.SQL_USER,
+    password: process.env.SQL_PASSWORD,
+    database: process.env.SQL_DATABASE,
+    host: process.env.SQL_HOST,
     dialect: "mysql",
   },
 };

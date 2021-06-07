@@ -2,47 +2,46 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import {useParams} from 'react-router-dom'
 
-function UserDetail() {
+function UserDetail({type}) {
 
-    const [userDetail, setUserDetail] = useState({});
+    const [userDetail, setUserDetail] = useState({domicilio:[]});
+    const [url, setUrl] = useState('')
     const ido = useParams()
-    console.log(ido)
-    // async function fetchData(){
-    //         const data = await fetch(`http://localhost:4000/api/users/${ido.id}`);
-    //         const details = await data.json();
-    //         console.log(details)
-    //         setUserDetail(details)
-    //     }
-    //     fetchData();
 
-    //el problema es que renderiza antes de tener los datos
-
+    useEffect(()=>{
+    if(type === 'lastUser'){
+        setUrl ('http://localhost:4000/api/users/last')
+    } else if(type === 'user'){
+        setUrl (`http://localhost:4000/api/users/${ido.id}`)
+    }
+   },[type])
     useEffect (()=>{  
         async function fetchData (props){
-            const data = await fetch(`http://localhost:4000/api/users/${ido.id}`);
+            const data = await fetch(url);
             const details = await data.json();
-            console.log(details)
+            if(type === 'lastUser'){
+                setUserDetail(details[0])
+            }else if(type === 'user'){
             setUserDetail(details)
+            }
         }
-        fetchData();
-    },[])
+        fetchData();      
+    },[url])
     console.log(userDetail)
-
-    // if(userDetail){
-
     return (
         <div className="product-pic column">
-        <section className="container">
-                <div className="register">
-                   {console.log(userDetail)}
-                    <div className="profile-photo-cont">
+        <section className="container"> 
+                    {userDetail.createdAt ? 
+                    <>
+                        <h3 className="lastUserTitle">Ultimo Usuario creado el</h3> 
+                        <h3 className="lastUserTitle">{userDetail.createdAt}</h3>
+                    </>
+                        :
+                    null}
                         <div className="icon-login">
                             <img src={userDetail.image} alt=""/>
                         </div>
-                        <p id="text-foto-perfil">
-                            Foto de perfil
-                        </p>
-                    </div>
+       
                     <p className="text">
                         <strong> Nombre: </strong><span className="text-datos">
                             {userDetail.name}
@@ -64,32 +63,32 @@ function UserDetail() {
                         </span>
                     </p>
                     <p className="text">
-                        <strong> Metodos de pago: </strong>
-                        { true ? 
+                        <strong> Medios de pago: </strong>
+                       
                             <span className="text-datos">
-                                medio de pago
+                                {userDetail.medio_pago}
                             </span>
-                            :
-                                <span className="text-datos"> No tienes medio de pago </span>
-                             } 
                     </p>
                      <p className="text">
-                        <strong> Domicilio: </strong>
-                        { true ? 
-                            <span className="text-datos">
-                                domicilio
-                            </span>
-                            :
-                                <span className="text-datos"> No tienes medio de pago </span>
-                             } 
+                        { userDetail.domicilio.length > 0 ? 
+                            userDetail.domicilio.map(domicilio => {
+                                return (
+                                <>
+                                    <p className="text-datos">
+                                        <strong> Domicilio: </strong>
+                                        {domicilio.calle}, {domicilio.cp}, {domicilio.localidad}, 
+                                        {domicilio.provincias.nombre}, {domicilio.paises.nombre}
+                                   </p>
+                                </>)
+                                }
+                            )
+                        :
+                            <span className="text-datos"> <strong> Domicilio: </strong>No tienes domicilios </span>
+                        } 
                     </p>
-                    
-                       
-                </div>
             </section>
         </div>
     )
-    // }
 }
 
 export default UserDetail

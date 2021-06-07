@@ -23,6 +23,42 @@ header {
   background-color: var(--celeste);
   z-index: 90;
 }
+.campo-busqueda {
+  position: relative;
+  border-radius: 4px;
+  border: none;
+  background-color: whitesmoke;
+  outline: none;
+  padding: 5px 40px 5px 10px;
+}
+.campo-busqueda {
+  font-size: 1rem;
+}
+#lupa {
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+.campo-busqueda:hover,
+.campo-busqueda:focus {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+.barra-busqueda {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+#lupa {
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  right: 0;
+  color: var(--celeste);
+  margin: auto 0;
+  background-color: transparent;
+}
+.disapear {
+  border: none;
+}
 .user-login {
   position: fixed;
   top: 16px;
@@ -43,6 +79,7 @@ main {
   max-width: 1200px;
   margin: auto;
   font-family: "Electrolize", sans-serif;
+  min-height: 400px;
 }
 .logo img {
   width: 5rem;
@@ -52,6 +89,17 @@ main {
 }
 .buscar {
   display: none;
+}
+.buscar.display {
+  display: flex;
+  justify-content: center;
+}
+.product-preview.form-search {
+  width: 95%;
+  align-items: center;
+  margin: 1rem auto;
+  padding: 2rem 0;
+  justify-content: center;
 }
 .cart-logo {
   height: 5rem;
@@ -127,6 +175,9 @@ main {
   flex-grow: 1;
   flex-shrink: 1;
 }
+.build-desc {
+  width: 65%;
+}
 .product-description p {
   text-align: center;
   height: 55px;
@@ -171,7 +222,6 @@ main {
   margin-left: 0.8rem;
 }
 .text-build-description {
-  width: 25ch;
   text-align: left;
 }
 .llamar {
@@ -196,6 +246,7 @@ footer {
   justify-content: center;
   align-items: center;
   box-shadow: 0px -3px 10px rgba(0, 0, 0, 0.5);
+  min-height: 115px;
 }
 .top-footer {
   width: 100%;
@@ -206,15 +257,15 @@ footer {
 }
 .redes {
   display: flex;
-  width: 30%;
-  justify-content: space-between;
+  width: 35%;
+  justify-content: flex-end;
 }
 .logo-redes {
   width: 2rem;
   height: 2rem;
+  margin-left: 0.5rem;
 }
 .contacto {
-  width: 30%;
   display: flex;
   align-content: center;
   padding: 5px;
@@ -230,7 +281,11 @@ footer {
   margin: 0;
   font-size: 0.75rem;
   align-self: center;
-  padding-top: 15px;
+  padding-top: 10px;
+}
+.warning {
+  font-size: small;
+  color: red;
 }
 @media (min-width: 768px) {
   html {
@@ -266,6 +321,9 @@ footer {
     width: 25%;
     align-self: center;
     margin: 0;
+  }
+  .disapear {
+    border: none;
   }
   .campo-busqueda,
   #lupa {
@@ -332,7 +390,4 @@ footer {
 }
 
 @media (min-width: 1200px) {
-  html {
-    font-size: 24px;
-  }
 }

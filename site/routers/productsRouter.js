@@ -1,18 +1,30 @@
 const express = require("express");
 const router = express.Router();
-const path = require("path");
-
 const accessControls = require("../middlewares/accessControls");
 const upload = require("../middlewares/multer");
 const productValidationMiddleware = require("../middlewares/productValidationMiddleware");
-
 const productsController = require("../controllers/productsController");
 
 router.get("/", productsController.products);
 router.get("/detail/:id", productsController.detail);
-router.get("/cart", productsController.cart);
-router.put("/cart/:id", productsController.cartAdd);
-router.delete("cart/:id", productsController.cartDelete);
+router.get("/cart", accessControls.notLogged, productsController.cart);
+router.put(
+  "/cart/edit/:id/:prod",
+  accessControls.notLogged,
+  productsController.editCart
+);
+router.delete(
+  "/cart/delete/:id/:prod",
+  accessControls.notLogged,
+  productsController.cartDelete
+);
+router.post("/cart/buy", accessControls.notLogged, productsController.cartBuy);
+router.get(
+  "/cart/buy",
+  accessControls.notLogged,
+  productsController.purchasesView
+);
+router.put("/cart/:id", accessControls.notLogged, productsController.addCart);
 router.get(
   "/create",
   accessControls.notLogged,
@@ -43,7 +55,7 @@ router.put(
   "/edit/:id",
   accessControls.notLogged,
   accessControls.admin,
-  upload.product.array("productImg"),
+  upload.product.single("productImg"),
   productsController.edit
 );
 router.put(
@@ -65,5 +77,6 @@ router.delete(
   productsController.delete
 );
 router.get("/search/", productsController.search);
+router.get("/mobile/search", productsController.mobileSearch);
 
 module.exports = router;

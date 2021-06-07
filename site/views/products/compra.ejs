@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <%- include('../partials/head')%>
+        <link rel="stylesheet" href="/css/styles-form.css">
+        <link rel="stylesheet" href="/css/productCart.css">
+        <link rel="stylesheet" href="/css/compra.css">
+</head>
+
+<body>
+
+    <%- include('../partials/header')%>
+
+        <main>
+            <section>
+                <h2>Gracias por tu compra !!!</h2>
+                <p>Nos estaremos poniendo en contacto a la brevedad para coornidar el envío /
+                    retiro del producto.</p>
+                <h3>Estos son los datos de tu compra:</h3>
+                <div class="compra-container">
+                    <h3>Nro de compra: <%= `${compra[0].user_id}` + `${compra[0].compra.id}` %>
+                    </h3>
+                    <h3>Total de compra: <% let total=compra.reduce((tot, item)=> {return tot + item.cantidad *
+                            item.precio_compra}, 0)
+                            %> <%= total.toLocaleString('es-AR', {minimumFractionDigits: 2, maximumFractionDigits: 2,
+                                style: 'currency' , currency: 'ARS' }) %>
+                    </h3>
+                    <h2>Detalle de Productos:</h2>
+                    <% for( let i=0; i < compra.length; i++ ) { %>
+                        <div class="compra-datos">
+                            <% if (compra[i].producto.imagenes.length> 0) { %>
+                                <img src="/img/products/<%= compra[i].producto.imagenes[0].imagen %> "
+                                    alt="imagen de producto">
+                                <% } else { %>
+                                    <img src="/img/products/default.jpg" alt="imagen de producto">
+                                    <%} %>
+                                        <h4>
+                                            Nombre de Producto: <%= compra[i].producto.nombre%>
+                                        </h4>
+                                        <p>
+                                            Cantidad: <%= compra[i].cantidad %>
+                                        </p>
+                                        <p>
+                                            Precio: <%= (compra[i].precio_compra).toLocaleString('es-AR',
+                                                {minimumFractionDigits: 2, maximumFractionDigits: 2, style: 'currency' ,
+                                                currency: 'ARS' }) %>
+                                        </p>
+
+                                        <% } %>
+
+
+        </main>
+
+        <%- include('../partials/footer')%>
+
+</body>
+
+</html>

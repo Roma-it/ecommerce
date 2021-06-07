@@ -2,7 +2,7 @@
 <html lang="es">
 
 <head>
-    <%- include('../partials/head'), {title: product.name}%>
+    <%- include('../partials/head')%>
         <link rel="stylesheet" href="/css/styles-form.css">
         <link rel="stylesheet" href="/css/productDetail.css">
 </head>
@@ -74,27 +74,32 @@
 
                     <div class="product-cost-quantity-buy">
                         <h4 class="product-cost">
-                            <%= product.precio ? (Number(product.precio + ((product.precio *
-                                product.iva.valor)/100))).toLocaleString('es-AR', {minimumFractionDigits: 2,
+                            <%= product.precio ? product.precio.toLocaleString('es-AR', {minimumFractionDigits: 2,
                                 maximumFractionDigits: 2, style: 'currency' , currency: 'ARS' }) : "CONSULTAR" %>
                         </h4>
                         <form action="/products/cart/<%=product.id%>?_method=put" method="post">
-                            <button type="submit" class="product-buy" <%=!product.precio ? 'disabled' : "" %>
-                                >COMPRAR</button>
-                            <select class="product-quantity" name="productAmount" id="productAmount">
-                                <% for( let i=1; i < 100; i++ ) { %>
-                                    <option value="<%= i %> " class="product-quantity-value">
-                                        <%= i %>
-                                    </option>
+                            <button type="submit" class="product-buy" <%=!product.precio ? "disabled" :
+                                ((product.cantidad_real - product.cantidad_en_pedido) < 1) ? "disabled" : ""
+                                %>>COMPRAR</button>
+                            <% if ((product.cantidad_real - product.cantidad_en_pedido) < 1) { %>
+                                <p class="warning"> Sin Stock</p>
+                                <% } else {%>
+                                    <select class="product-quantity" name="cantidad" id="productAmount">
+                                        <% for( let i=0; i < (product.cantidad_real - product.cantidad_en_pedido); i++ )
+                                            { %>
+                                            <option value="<%= i + 1 %> " class="product-quantity-value">
+                                                <%= i +1 %>
+                                            </option>
+                                            <% } %>
+                                    </select>
                                     <% } %>
-                            </select>
                         </form>
                     </div>
 
                     <% if (locals.userLogged && locals.userLogged.admin) { %>
                         <div class="editProduct">
                             <a href="<%= `/products/edit/${product.id}` %> ">EDITAR</a>
-                            <form class="deleteProduct" action="/products/delete/<%=product.id%>?_method=delete"
+                            <form class="deleteProduct" id="deleteProduct" action="/products/delete/<%=product.id%>?_method=delete"
                                 method="post">
                                 <button class="deleteSubmitButton" type="submit">ELIMINAR</button>
                             </form>
@@ -109,26 +114,23 @@
                             </div>
                 </article>
 
-                <!-- <div class="product-similary">
-                <%// for( let i = 0; i < 3; i++ ) { %>
-                    <article class="product-similary-product">
-                        <a href="/products/detail/<%=// similary[i].id %> "><img class="product-similary-image" src="/img/products/<%= //similary[i].img[0] %> " alt="producto similar 1"></a>
-                        <h5 class="product-similary-name"><%= //similary[i].name %> </h5>
-                        <h5 class="product-similary-cost">$ <%= //similary[i].price %> </h5>
-                    </article>
-                    <% //} %>
-            </div> -->
+            //     <!-- <div class="product-similary">
+            //     <%// for( let i = 0; i < 3; i++ ) { %>
+            //         <article class="product-similary-product">
+            //             <a href="/products/detail/<%=// similary[i].id %> "><img class="product-similary-image" src="/img/products/<%= //similary[i].img[0] %> " alt="producto similar 1"></a>
+            //             <h5 class="product-similary-name"><%= //similary[i].name %> </h5>
+            //             <h5 class="product-similary-cost">$ <%= //similary[i].price %> </h5>
+            //         </article>
+            //         <% //} %>
+            // </div> -->
             </section>
-            <!-- <script>let deleteSubmit = document.querySelector(".deleteProduct");
-                deleteSubmit.addEventListener("submit", function (evt) {
-                    evt.preventDefault()
-                    let sureDelete = confirm("Seguro desea eliminar el producto ??")
-                    if (sureDelete) {
-                        deleteSubmit.submit()
-                    }
-                })
+            // <script>
+            //     let buyButton = document.querySelector('button[disabled]');
+            //     buyButton.addEventListener("submit", function (evt) {
+            //         evt.preventDefault()
+            //     })
 
-            </script> -->
+            // </script>
         </main>
 
         <%- include('../partials/footer')%>
